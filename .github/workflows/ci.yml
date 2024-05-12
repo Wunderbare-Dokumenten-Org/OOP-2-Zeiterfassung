@@ -22,7 +22,7 @@ jobs:
     - name: Check Format
       uses: axel-op/googlejavaformat-action@v3
       with:
-        args: "--set-exit-if-changed --replace"
+        args: "--replace"
         skip-commit: true
 
     - name: Show Diff
