@@ -39,17 +39,14 @@ public class Start {
     }
 
     private void anzeigenArbeitszeithistorie() {
-        // Hier implementieren Sie den Code zum Anzeigen der Arbeitszeithistorie
         System.out.println("Arbeitszeithistorie anzeigen...");
     }
 
     private void einstempeln() {
-        // Hier implementieren Sie den Code zum Ein- und Ausstempeln
         System.out.println("Einstempeln...");
     }
 
     private void antragStellen() {
-        // Hier implementieren Sie den Code zum Stellen von Anträgen
         System.out.println("Antrag stellen...");
     }
 
