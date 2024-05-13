@@ -28,7 +28,7 @@ public class Start {
                 antragStellen();
                 break;
             case 4:
-                System.out.println("Vielen Dank für die Nutzung des Zeiterfassungssystems!");
+                System.out.println("Tschö mit ö");
                 System.exit(0);
                 break;
             default:
