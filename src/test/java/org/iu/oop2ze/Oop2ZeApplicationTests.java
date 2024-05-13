@@ -9,5 +9,3 @@ class Oop2ZeApplicationTests {
   @Test
   void contextLoads() {}
 }
-
-//Test
