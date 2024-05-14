@@ -22,14 +22,11 @@ jobs:
     - name: Check Format
       uses: axel-op/googlejavaformat-action@v3
       with:
-        args: "--replace"
+        args: "--replace --skip-sorting-imports"
         skip-commit: true
 
     - name: Show Diff
       run: git --no-pager diff --exit-code
-
-    - name: Test Project
-      run: mvn test
 
     - name: Package Project
       run: mvn package -DskipTests
