@@ -1,21 +1,26 @@
 package org.iu.oop2ze.core.database.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import java.time.LocalDateTime;
+import java.util.Date;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import org.iu.oop2ze.core.database.models.abstracts.BaseEntity;
 import org.iu.oop2ze.core.database.models.abstracts.enums.AntragType;
 
-@Entity
 @Getter
 @Setter
-public class Antrag {
-  @Id @GeneratedValue private Long Id;
-  @OneToOne private Person StellendePerson;
-  private AntragType Type;
-  private LocalDateTime Uhrzeit;
-  @OneToOne private Person BearbeitendePerson;
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+public class Antrag extends BaseEntity {
+    @OneToMany
+    private Mitarbeiter stellenderMitarbeiter;
+    private AntragType type;
+    private Date uhrzeit;
 }
