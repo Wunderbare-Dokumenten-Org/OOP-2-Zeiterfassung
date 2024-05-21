@@ -1,11 +1,10 @@
 package org.iu.oop2ze.core.database.models;
 
-import jakarta.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.iu.oop2ze.core.database.models.abstracts.BaseEntity;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,8 +13,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Abteilung extends BaseEntity {
+public class Mitarbeiter extends BaseEntity {
     private String name;
-    @OneToOne
-    private Mitarbeiter leitenderMitarbeiter;
+    private String vorname;
+    private String personalnummer;
+    private Boolean isSysAdmin;
+    @ManyToOne
+    private Abteilung abteilung;
+    private String email;
+    private String passwort;
 }
