@@ -21,7 +21,7 @@ public class MitarbeiterService {
     private MitarbeiterRepository mitarbeiterRepository;
 
     /**
-     * Erstellt einen Mitarbeiter
+     * Erstellt einen Mitarbeiter (Passwort wird beim ersten Login des Mitarbeiters durch Ihn gestetzt)
      *
      * @param name Name des Mitarbeiters
      * @param vorname Vorname des Mitarbeiters
