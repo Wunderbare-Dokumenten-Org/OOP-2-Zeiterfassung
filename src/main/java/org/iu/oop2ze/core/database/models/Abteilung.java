@@ -16,6 +16,7 @@ import lombok.Setter;
 @Entity
 public class Abteilung extends BaseEntity {
     private String name;
+    private Boolean isHr;
     @OneToOne
     private Mitarbeiter leitenderMitarbeiter;
 }
