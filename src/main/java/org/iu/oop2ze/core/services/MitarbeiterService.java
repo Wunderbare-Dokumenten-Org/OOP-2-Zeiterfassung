@@ -4,6 +4,8 @@ import org.iu.oop2ze.core.database.models.Abteilung;
 import org.iu.oop2ze.core.database.models.Mitarbeiter;
 import org.iu.oop2ze.core.database.repositories.MitarbeiterRepository;
 import org.iu.oop2ze.core.helpers.EnviromentHelper;
+import org.iu.oop2ze.core.services.interfaces.IMitarbeiterService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Service
 @Slf4j
-public class MitarbeiterService {
+public class MitarbeiterService implements IMitarbeiterService {
     @Autowired
     private MitarbeiterRepository mitarbeiterRepository;
 
@@ -31,11 +33,12 @@ public class MitarbeiterService {
      * @author Julius Beier
      */
     public Mitarbeiter erstelleMitarbeiter(
-            final String name,
-            final String vorname,
-            final String personalnummer,
-            final Abteilung abteilung) {
-        if (name.isBlank() || vorname.isBlank() || personalnummer.isBlank() || abteilung == null) {
+            @NotNull final String name,
+            @NotNull final String vorname,
+            @NotNull final String personalnummer,
+            @NotNull final Abteilung abteilung
+    ){
+        if (name.isBlank() || vorname.isBlank() || personalnummer.isBlank()) {
             throw new IllegalArgumentException();
         }
 
@@ -50,5 +53,30 @@ public class MitarbeiterService {
 
         mitarbeiterRepository.save(mitarbeiter);
         return mitarbeiter;
+    }
+
+    @Override
+    public Mitarbeiter bearbeiteMitarbeiter(
+            @NotNull Mitarbeiter mitarbeiter,
+            @NotNull final String name,
+            @NotNull final String vorname,
+            final Abteilung abteilung
+    ) {
+        if (!name.isBlank())
+            mitarbeiter.setName(name);
+
+        if (!vorname.isBlank())
+            mitarbeiter.setVorname(vorname);
+
+        if (abteilung != null)
+            mitarbeiter.setAbteilung(abteilung);
+
+        mitarbeiterRepository.save(mitarbeiter);
+        return mitarbeiter;
+    }
+
+    @Override
+    public void loescheMitarbeiter(@NotNull final Mitarbeiter mitarbeiter) {
+        mitarbeiterRepository.delete(mitarbeiter);
     }
 }

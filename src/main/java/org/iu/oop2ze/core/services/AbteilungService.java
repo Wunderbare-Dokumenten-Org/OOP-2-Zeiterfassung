@@ -3,6 +3,7 @@ package org.iu.oop2ze.core.services;
 import org.iu.oop2ze.core.database.models.Abteilung;
 import org.iu.oop2ze.core.database.models.Mitarbeiter;
 import org.iu.oop2ze.core.database.repositories.AbteilungRepository;
+import org.iu.oop2ze.core.services.interfaces.IAbteilungService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Service
 @Slf4j
-public class AbteilungService {
+public class AbteilungService implements IAbteilungService {
     @Autowired
     AbteilungRepository abteilungRepository;
 
@@ -46,29 +47,29 @@ public class AbteilungService {
     /**
      * Bearbeitet eine Abteilung
      *
-     * @param bearbeitendeAbteilung Instanz der zubearbeitenden Abteilung
+     * @param abteilung Instanz der zubearbeitenden Abteilung
      * @param name Name der Abteilung
      * @param leitenderMitarbeiter Leitender Mitarbeiter der Abteilung
      * @return Die neu erstellte Abteilung
      * @author Julius Beier
      */
     public Abteilung bearbeiteAbteilung(
-            Abteilung bearbeitendeAbteilung,
+            Abteilung abteilung,
             final String name,
             final Mitarbeiter leitenderMitarbeiter
     ) {
-        if (bearbeitendeAbteilung == null) {
+        if (abteilung == null) {
             throw new IllegalArgumentException();
         }
 
         if (!name.isBlank())
-            bearbeitendeAbteilung.setName(name);
+            abteilung.setName(name);
 
         if (leitenderMitarbeiter != null)
-            bearbeitendeAbteilung.setLeitenderMitarbeiter(leitenderMitarbeiter);
+            abteilung.setLeitenderMitarbeiter(leitenderMitarbeiter);
 
-        abteilungRepository.save(bearbeitendeAbteilung);
-        return bearbeitendeAbteilung;
+        abteilungRepository.save(abteilung);
+        return abteilung;
     }
 
     public void loescheAbteilung(final Abteilung abteilung) {
