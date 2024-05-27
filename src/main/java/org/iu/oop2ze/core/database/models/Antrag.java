@@ -1,8 +1,7 @@
 package org.iu.oop2ze.core.database.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -19,8 +18,8 @@ import org.iu.oop2ze.core.database.models.abstracts.enums.AntragType;
 @NoArgsConstructor
 @Entity
 public class Antrag extends BaseEntity {
-    @OneToMany
+    @ManyToOne
     private Mitarbeiter stellenderMitarbeiter;
     private AntragType type;
-    private Date uhrzeit;
+    private Date datum;
 }

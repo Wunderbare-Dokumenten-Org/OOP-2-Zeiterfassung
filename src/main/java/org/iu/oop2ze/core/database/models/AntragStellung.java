@@ -1,7 +1,7 @@
 package org.iu.oop2ze.core.database.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +22,6 @@ public class AntragStellung extends BaseEntity {
     private String titel;
     private StatusType status;
     private String kommentar;
-    @OneToMany
+    @ManyToOne
     private Mitarbeiter bearbeitenderMitarbeiter;
 }
