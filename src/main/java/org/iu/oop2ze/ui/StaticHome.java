@@ -1,13 +1,7 @@
 package org.iu.oop2ze.ui;
 import java.util.Scanner;
-public class Start {
-    private Scanner scanner;
-
-    public Start() {
-        scanner = new Scanner(System.in);
-    }
-
-    public void startseite() {
+public class StaticHome {
+    public static void startseite() {
         System.out.println("Willkommen beim Zeiterfassungssystem!");
         System.out.println("Bitte wählen Sie eine Option:");
         System.out.println("1. Arbeitszeithistorie anzeigen");
@@ -15,6 +9,7 @@ public class Start {
         System.out.println("3. Antrag stellen");
         System.out.println("4. Beenden");
 
+        Scanner scanner = new Scanner(System.in);
         int auswahl = scanner.nextInt();
 
         switch (auswahl) {
@@ -25,7 +20,8 @@ public class Start {
                 einstempeln();
                 break;
             case 3:
-                antragStellen();
+                AntragStellen.antragStellen();
+                Urlaubsantrag.stelleUrlaubsantrag();
                 break;
             case 4:
                 System.out.println("Tschö mit ö");
@@ -38,20 +34,4 @@ public class Start {
         }
     }
 
-    private void anzeigenArbeitszeithistorie() {
-        System.out.println("Arbeitszeithistorie anzeigen...");
-    }
-
-    private void einstempeln() {
-        System.out.println("Einstempeln...");
-    }
-
-    private void antragStellen() {
-        System.out.println("Antrag stellen...");
-    }
-
-    public static void main(String[] args) {
-        Start start = new Start();
-        start.startseite();
-    }
 }
