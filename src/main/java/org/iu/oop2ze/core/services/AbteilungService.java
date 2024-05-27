@@ -44,6 +44,42 @@ public class AbteilungService {
     }
 
     /**
+     * Bearbeitet eine Abteilung
+     *
+     * @param bearbeitendeAbteilung Instanz der zubearbeitenden Abteilung
+     * @param name Name der Abteilung
+     * @param leitenderMitarbeiter Leitender Mitarbeiter der Abteilung
+     * @return Die neu erstellte Abteilung
+     * @author Julius Beier
+     */
+    public Abteilung bearbeiteAbteilung(
+            Abteilung bearbeitendeAbteilung,
+            final String name,
+            final Mitarbeiter leitenderMitarbeiter
+    ) {
+        if (bearbeitendeAbteilung == null) {
+            throw new IllegalArgumentException();
+        }
+
+        if (!name.isBlank())
+            bearbeitendeAbteilung.setName(name);
+
+        if (leitenderMitarbeiter != null)
+            bearbeitendeAbteilung.setLeitenderMitarbeiter(leitenderMitarbeiter);
+
+        abteilungRepository.save(bearbeitendeAbteilung);
+        return bearbeitendeAbteilung;
+    }
+
+    public void loescheAbteilung(final Abteilung abteilung) {
+        if (abteilung == null) {
+            throw new IllegalArgumentException();
+        }
+
+        abteilungRepository.delete(abteilung);
+    }
+
+    /**
      * Findet Abteilungen mit dem übergebenen Namen
      *
      * @param name Name der Abteilung nach welcher gesucht wird
