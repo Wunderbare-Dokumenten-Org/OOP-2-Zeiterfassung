@@ -27,8 +27,8 @@ public class AbteilungService {
      * @return Die neu erstellte Abteilung
      * @author Julius Beier
      */
-    public Abteilung erstelleAbteilung(final String name, final Mitarbeiter leitenderMitarbeiter) {
-        if (name.isBlank() || leitenderMitarbeiter == null) {
+    public Abteilung erstelleAbteilung(final String name, final Boolean isHr, final Mitarbeiter leitenderMitarbeiter) {
+        if (name.isBlank() || leitenderMitarbeiter == null || isHr == null) {
             throw new IllegalArgumentException();
         }
 
@@ -37,7 +37,7 @@ public class AbteilungService {
             return null;
         }
 
-        var abteilung = new Abteilung(name, leitenderMitarbeiter);
+        var abteilung = new Abteilung(name, isHr, leitenderMitarbeiter);
 
         abteilungRepository.save(abteilung);
         return abteilung;
