@@ -6,6 +6,7 @@ import java.util.List;
 public class HomeMenu {
     public static final List<HomeMenuOptions> ADMIN = Arrays.asList(
             HomeMenuOptions.ABTEILUNGEN,
+            HomeMenuOptions.MITARBEITER,
             HomeMenuOptions.LOGOUT,
             HomeMenuOptions.BEENDEN
     );

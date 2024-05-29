@@ -1,14 +1,15 @@
-package org.iu.oop2ze.ui.cli;
+package org.iu.oop2ze.ui.cli.views;
 
+import org.iu.oop2ze.core.services.interfaces.IAbteilungService;
 import org.iu.oop2ze.ui.cli.abstracts.CliComponent;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 import org.iu.oop2ze.ui.cli.helpers.MenuHelper;
 import org.iu.oop2ze.ui.cli.helpers.UserHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class Home extends CliComponent {
+public class HomeView extends CliComponent {
     @Autowired
-    private Login login;
+    private LoginView login;
 
     private Boolean running = true;
 
@@ -24,7 +25,9 @@ public class Home extends CliComponent {
             var result = EingabeHelper.menuEinzelEingabe("Willkommen beim Zeiterfassungssystem", menu);
 
             switch (result) {
-                case ABTEILUNGEN, ARBEITSZEITEN, MITARBEITER, ANTRAEGE -> {
+                case ANTRAEGE -> {
+                }
+                case ARBEITSZEITEN, MITARBEITER, ABTEILUNGEN -> {
                 }
                 case LOGOUT -> UserHelper.logout();
                 case BEENDEN -> running = false;

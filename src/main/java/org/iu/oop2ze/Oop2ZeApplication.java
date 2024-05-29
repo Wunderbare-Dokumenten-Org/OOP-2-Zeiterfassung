@@ -1,6 +1,6 @@
 package org.iu.oop2ze;
 
-import org.iu.oop2ze.ui.cli.Home;
+import org.iu.oop2ze.ui.cli.views.HomeView;
 import org.iu.oop2ze.ui.cli.abstracts.InheritComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -22,6 +22,6 @@ public class Oop2ZeApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        context.getBean(Home.class).exec();
+        context.getBean(HomeView.class).exec();
     }
 }

@@ -1,4 +1,4 @@
-package org.iu.oop2ze.ui.cli;
+package org.iu.oop2ze.ui.cli.views;
 
 import org.iu.oop2ze.core.database.models.Mitarbeiter;
 import org.iu.oop2ze.core.services.interfaces.IMitarbeiterService;
@@ -8,7 +8,7 @@ import org.iu.oop2ze.ui.cli.helpers.PromptHelper;
 import org.iu.oop2ze.ui.cli.helpers.UserHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class Login extends CliComponent {
+public class LoginView extends CliComponent {
     @Autowired
     private IMitarbeiterService mitarbeiterService;
 
@@ -25,7 +25,7 @@ public class Login extends CliComponent {
         do {
             EingabeHelper.clearConsole();
 
-            System.out.println("User - Login");
+            System.out.println("User - LoginView");
 
             var emailPrompt = PromptHelper.erstellInputPrompt("Bitte geben Sie Ihre Email an%s: ", email);
             email = EingabeHelper.stringEingabe(emailPrompt, email);
