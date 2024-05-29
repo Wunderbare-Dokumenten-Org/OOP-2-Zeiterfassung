@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.iu.oop2ze.core.database.models.Antrag;
 import org.iu.oop2ze.core.database.models.Mitarbeiter;
 import org.iu.oop2ze.core.database.models.abstracts.enums.AntragType;
+import org.iu.oop2ze.core.database.models.abstracts.enums.StatusType;
 import org.iu.oop2ze.core.database.repositories.AntragRepository;
 import org.iu.oop2ze.core.services.interfaces.IAntragService;
 import org.jetbrains.annotations.NotNull;
@@ -36,9 +37,16 @@ public class AntragService implements IAntragService {
     public Antrag erstelleAntrag(
             @NotNull final Mitarbeiter stellenderMitarbeiter,
             @NotNull final AntragType type,
-            @NotNull final Date datum
+            @NotNull final Date datum,
+            @NotNull final String titel,
+            @NotNull final StatusType status,
+            final String kommentar,
+            @NotNull final Mitarbeiter bearbeitenderMitarbeiter
+
+
+
     ) {
-        var antrag = new Antrag(stellenderMitarbeiter, type, datum);
+        var antrag = new Antrag(stellenderMitarbeiter, type, datum, titel, status, kommentar, bearbeitenderMitarbeiter);
 
         antragRepository.save(antrag);
         return antrag;
@@ -54,12 +62,18 @@ public class AntragService implements IAntragService {
      * @author Julius Beier
      */
     @Override
-    public Antrag bearbeiteAntrag(@NotNull Antrag antrag, final AntragType type, final Date datum) {
+    public Antrag bearbeiteAntrag(@NotNull Antrag antrag, final AntragType type, final Date datum, final StatusType status,final String kommentar, final Mitarbeiter bearbeitenderMitarbeiter) {
         if (type != null)
             antrag.setType(type);
 
         if (datum != null)
             antrag.setDatum(datum);
+
+        if (status != null)
+            antrag.setStatus(status);
+
+        if (bearbeitenderMitarbeiter != null)
+            antrag.setBearbeitenderMitarbeiter(bearbeitenderMitarbeiter);
 
         antragRepository.save(antrag);
         return antrag;
