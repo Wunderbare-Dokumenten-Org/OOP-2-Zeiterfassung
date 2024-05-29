@@ -1,13 +1,12 @@
 package org.iu.oop2ze.core.services;
 
+import lombok.extern.slf4j.Slf4j;
 import org.iu.oop2ze.core.database.models.Abteilung;
 import org.iu.oop2ze.core.database.models.Mitarbeiter;
 import org.iu.oop2ze.core.database.repositories.AbteilungRepository;
 import org.iu.oop2ze.core.services.interfaces.IAbteilungService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Klasse, welche Funktionen und Methoden für Abteilungen beinhaltet
@@ -23,7 +22,7 @@ public class AbteilungService implements IAbteilungService {
     /**
      * Erstellt eine neue Abteilung
      *
-     * @param name Name der Abteilung
+     * @param name                 Name der Abteilung
      * @param leitenderMitarbeiter Leitender Mitarbeiter der Abteilung
      * @return Die neu erstellte Abteilung
      * @author Julius Beier
@@ -47,8 +46,8 @@ public class AbteilungService implements IAbteilungService {
     /**
      * Bearbeitet eine Abteilung
      *
-     * @param abteilung Instanz der zubearbeitenden Abteilung
-     * @param name Name der Abteilung
+     * @param abteilung            Instanz der zubearbeitenden Abteilung
+     * @param name                 Name der Abteilung
      * @param leitenderMitarbeiter Leitender Mitarbeiter der Abteilung
      * @return Die neu erstellte Abteilung
      * @author Julius Beier

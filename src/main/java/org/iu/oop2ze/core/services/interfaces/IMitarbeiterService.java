@@ -9,4 +9,6 @@ public interface IMitarbeiterService {
     Mitarbeiter bearbeiteMitarbeiter(Mitarbeiter mitarbeiter, final String name, final String vorname, final Abteilung abteilung);
 
     void loescheMitarbeiter(final Mitarbeiter mitarbeiter);
+
+    Mitarbeiter findeMitarbeiterMitLogin(final String email, final String passwort);
 }
