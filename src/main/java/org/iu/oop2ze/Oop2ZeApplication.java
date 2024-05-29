@@ -1,12 +1,27 @@
 package org.iu.oop2ze;
 
-import org.springframework.boot.SpringApplication;
+import org.iu.oop2ze.ui.cli.views.HomeView;
+import org.iu.oop2ze.ui.cli.abstracts.InheritComponent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-public class Oop2ZeApplication {
+@ComponentScan(basePackages = "org.iu.oop2ze",
+        includeFilters = @ComponentScan.Filter(InheritComponent.class))
+public class Oop2ZeApplication implements CommandLineRunner {
+    @Autowired
+    private ApplicationContext context;
 
-  public static void main(String[] args) {
-    SpringApplication.run(Oop2ZeApplication.class, args);
-  }
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(Oop2ZeApplication.class).run(args);
+    }
+
+    @Override
+    public void run(String... args) {
+        context.getBean(HomeView.class).exec();
+    }
 }
