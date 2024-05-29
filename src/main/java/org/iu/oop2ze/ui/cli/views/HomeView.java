@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class HomeView extends CliComponent {
     @Autowired
     private LoginView login;
+     @Autowired
+    private AbteilungenAnzeigen abteilungenAnzeigen;
+
 
     private Boolean running = true;
 
@@ -27,8 +30,9 @@ public class HomeView extends CliComponent {
             switch (result) {
                 case ANTRAEGE -> {
                 }
-                case ARBEITSZEITEN, MITARBEITER, ABTEILUNGEN -> {
+                case ARBEITSZEITEN, MITARBEITER -> {
                 }
+                case ABTEILUNGEN -> abteilungenAnzeigen.exec();
                 case LOGOUT -> UserHelper.logout();
                 case BEENDEN -> running = false;
                 case null -> running = false;

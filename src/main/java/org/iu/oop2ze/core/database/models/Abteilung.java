@@ -19,4 +19,8 @@ public class Abteilung extends BaseEntity {
     private Boolean isHr;
     @OneToOne
     private Mitarbeiter leitenderMitarbeiter;
+
+    public String getBeschreibung() {
+        return null;
+    }
 }

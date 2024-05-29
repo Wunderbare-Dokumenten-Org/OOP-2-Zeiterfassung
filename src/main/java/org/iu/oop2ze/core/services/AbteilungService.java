@@ -8,6 +8,9 @@ import org.iu.oop2ze.core.services.interfaces.IAbteilungService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Klasse, welche Funktionen und Methoden für Abteilungen beinhaltet
  *
@@ -79,6 +82,13 @@ public class AbteilungService implements IAbteilungService {
         abteilungRepository.delete(abteilung);
     }
 
+    @Override
+    public List<Abteilung> findeAlleAbteilungen() {
+        List<Abteilung> abteilung = new ArrayList<>();
+        abteilungRepository.findAll().forEach(abteilung::add);
+        return abteilung;
+    }
+
     /**
      * Findet Abteilungen mit dem übergebenen Namen
      *
@@ -100,4 +110,5 @@ public class AbteilungService implements IAbteilungService {
 
         return abteilung;
     }
+
 }

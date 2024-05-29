@@ -1,5 +1,7 @@
 package org.iu.oop2ze;
 
+import org.iu.oop2ze.ui.cli.menues.home.HomeMenu;
+import org.iu.oop2ze.ui.cli.views.AbteilungenAnzeigen;
 import org.iu.oop2ze.ui.cli.views.HomeView;
 import org.iu.oop2ze.ui.cli.abstracts.InheritComponent;
 import org.springframework.beans.factory.annotation.Autowired;
