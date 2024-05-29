@@ -1,22 +1,25 @@
 package org.iu.oop2ze.ui.cli.helpers;
 
-import org.iu.oop2ze.ui.cli.menues.home.HomeMenu;
-import org.iu.oop2ze.ui.cli.menues.home.HomeMenuOptions;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public class MenuHelper {
-    public static List<HomeMenuOptions> findeHomeMenu() {
+    public static <T> List<T> gibUserMenu(
+            @NotNull final List<T> adminMenu,
+            @NotNull final List<T> hrMenu,
+            @NotNull final List<T> mitarbeiterMenu
+    ) {
         var user = UserHelper.getAngemeldeterMitarbeiter();
         var abteilung = user.getAbteilung();
 
         if (abteilung == null && user.getIsSysAdmin()) {
-            return HomeMenu.ADMIN;
+            return adminMenu;
         } else if (abteilung != null) {
             if (abteilung.getIsHr()) {
-                return HomeMenu.HR;
+                return hrMenu;
             } else {
-                return HomeMenu.MITARBEITER;
+                return mitarbeiterMenu;
             }
         }
 
