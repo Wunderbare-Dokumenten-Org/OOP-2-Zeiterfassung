@@ -14,4 +14,7 @@ public interface IAbteilungService {
     void loescheAbteilung(final Abteilung abteilung);
 
     List<Abteilung> findeAlleAbteilungen();
+
+    Abteilung findeAbteilungNachId(Long id);
+    Abteilung findeAbteilungNachName(String name);
 }

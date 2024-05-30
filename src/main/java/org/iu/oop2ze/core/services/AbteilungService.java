@@ -96,6 +96,11 @@ public class AbteilungService implements IAbteilungService {
      * @return Die gesuchte Abteilung
      * @author Julius Beier
      */
+
+    @Override
+    public Abteilung findeAbteilungNachId(Long id) {
+        return abteilungRepository.findById(id).orElse(null);
+    }
     public Abteilung findeAbteilungNachName(final String name) {
         if (name.isBlank()) {
             throw new IllegalArgumentException();

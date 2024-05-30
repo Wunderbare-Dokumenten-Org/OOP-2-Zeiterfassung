@@ -83,4 +83,9 @@ public class MitarbeiterService implements IMitarbeiterService {
     public Mitarbeiter findeMitarbeiterMitLogin(@NotNull final String email, @NotNull final String passwort) {
         return mitarbeiterRepository.findByEmailAndPasswort(email, passwort);
     }
+
+    @Override
+    public Mitarbeiter findeMitarbeiterNachName(@NotNull final String name) {
+        return mitarbeiterRepository.findByName(name);
+    }
 }
