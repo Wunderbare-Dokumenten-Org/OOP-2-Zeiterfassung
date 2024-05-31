@@ -10,6 +10,9 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Klasse, welche Funktionen und Methoden für Mitarbeiter beinhaltet
  *
@@ -82,5 +85,22 @@ public class MitarbeiterService implements IMitarbeiterService {
     @Override
     public Mitarbeiter findeMitarbeiterMitLogin(@NotNull final String email, @NotNull final String passwort) {
         return mitarbeiterRepository.findByEmailAndPasswort(email, passwort);
+    }
+
+    public List<Mitarbeiter> findeAlleMitarbeiter() {
+        List<Mitarbeiter> mitarbeiter = new ArrayList<>();
+
+        for (Mitarbeiter m : mitarbeiterRepository.findAll()) {
+            if (!m.getIsSysAdmin())
+                mitarbeiter.add(m);
+        }
+
+        mitarbeiterRepository.findAll().forEach(mitarbeiter::add);
+
+        return mitarbeiter;
+    }
+
+    public List<Mitarbeiter> findeAlleMitarbeiterFuerAbteilung(@NotNull final Abteilung abteilung) {
+        return new ArrayList<>(mitarbeiterRepository.findAllByAbteilung(abteilung));
     }
 }

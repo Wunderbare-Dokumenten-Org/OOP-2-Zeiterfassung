@@ -16,6 +16,9 @@ public class EingabeHelper {
 
     // NOTE: vllt multipage support???
     public static <T> T menuEinzelEingabe(@NotNull final String title, @NotNull final List<T> options) {
+        if (options.isEmpty())
+            return null;
+
         var propmt = new StringBuilder();
 
         propmt.append("%s\n".formatted(title));
