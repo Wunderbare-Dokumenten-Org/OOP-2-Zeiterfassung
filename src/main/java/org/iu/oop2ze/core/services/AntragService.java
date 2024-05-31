@@ -31,7 +31,7 @@ public class AntragService implements IAntragService {
      * @param type                  Der Type des Antrags
      * @param datum                 Das Datum, für wann der Antrag gedacht ist
      * @return Den erstellten Antrag
-     * @author Julius Beier
+     * @author Julius Beier, Leon Dieringer
      */
     @Override
     public Antrag erstelleAntrag(
@@ -59,7 +59,7 @@ public class AntragService implements IAntragService {
      * @param kommentar Der kommentar für Antrag
      * @param bearbeitenderMitarbeiter Der Bearbeitdende Mitarbeiter
      * @return Den bearbeiteten Antrag
-     * @author Julius Beier
+     * @author Julius Beier, Leon Dieringer
      */
     @Override
     public Antrag bearbeiteAntrag(
