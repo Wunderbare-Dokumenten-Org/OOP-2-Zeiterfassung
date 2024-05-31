@@ -79,7 +79,8 @@ public class AntragService implements IAntragService {
         if (status != null)
             antrag.setStatus(status);
 
-        antrag.setKommentar(kommentar);
+        if (kommentar != null)
+            antrag.setKommentar(kommentar);
 
         if (bearbeitenderMitarbeiter != null)
             antrag.setBearbeitenderMitarbeiter(bearbeitenderMitarbeiter);
