@@ -28,8 +28,8 @@ public class AntragService implements IAntragService {
      * Erstellt einen Antrag
      *
      * @param stellenderMitarbeiter Der Mitarbeiter, welcher den Antrag stellt
-     * @param type Der Type des Antrags
-     * @param datum Das Datum, für wann der Antrag gedacht ist
+     * @param type                  Der Type des Antrags
+     * @param datum                 Das Datum, für wann der Antrag gedacht ist
      * @return Den erstellten Antrag
      * @author Julius Beier
      */
@@ -42,9 +42,6 @@ public class AntragService implements IAntragService {
             @NotNull final StatusType status,
             final String kommentar,
             @NotNull final Mitarbeiter bearbeitenderMitarbeiter
-
-
-
     ) {
         var antrag = new Antrag(stellenderMitarbeiter, type, datum, titel, status, kommentar, bearbeitenderMitarbeiter);
 
@@ -56,13 +53,23 @@ public class AntragService implements IAntragService {
      * Bearbeitet einen Antrag
      *
      * @param antrag Der zu bearbeitende Antrag
-     * @param type Der Type des Antrags
-     * @param datum Das Datum des Antrags
+     * @param type   Der Type des Antrags
+     * @param datum  Das Datum des Antrags
+     * @param status Der Status des Antrags
+     * @param kommentar Der kommentar für Antrag
+     * @param bearbeitenderMitarbeiter Der Bearbeitdende Mitarbeiter
      * @return Den bearbeiteten Antrag
      * @author Julius Beier
      */
     @Override
-    public Antrag bearbeiteAntrag(@NotNull Antrag antrag, final AntragType type, final Date datum, final StatusType status,final String kommentar, final Mitarbeiter bearbeitenderMitarbeiter) {
+    public Antrag bearbeiteAntrag(
+            @NotNull Antrag antrag,
+            final AntragType type,
+            final Date datum,
+            final StatusType status,
+            final String kommentar,
+            final Mitarbeiter bearbeitenderMitarbeiter
+    ) {
         if (type != null)
             antrag.setType(type);
 
@@ -71,6 +78,8 @@ public class AntragService implements IAntragService {
 
         if (status != null)
             antrag.setStatus(status);
+
+        antrag.setKommentar(kommentar);
 
         if (bearbeitenderMitarbeiter != null)
             antrag.setBearbeitenderMitarbeiter(bearbeitenderMitarbeiter);
