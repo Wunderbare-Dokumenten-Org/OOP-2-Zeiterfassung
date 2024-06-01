@@ -88,4 +88,8 @@ public class MitarbeiterService implements IMitarbeiterService {
     public Mitarbeiter findeMitarbeiterNachName(@NotNull final String name) {
         return mitarbeiterRepository.findByName(name);
     }
+    @Override
+    public Mitarbeiter findeMitarbeiterNachId(Long id) {
+        return mitarbeiterRepository.findById(id).orElse(null);
+    }
 }

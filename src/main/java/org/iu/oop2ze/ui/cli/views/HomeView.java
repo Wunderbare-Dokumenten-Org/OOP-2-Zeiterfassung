@@ -16,6 +16,9 @@ public class HomeView extends CliComponent {
      @Autowired
      private AbteilungenBearbeiten abteilungenBearbeiten;
 
+     @Autowired
+     private AbteilungenErstellen abteilungenErstellen;
+
     private Boolean running = true;
 
     @Override
@@ -34,7 +37,7 @@ public class HomeView extends CliComponent {
                 }
                 case ARBEITSZEITEN, MITARBEITER -> {
                 }
-                case ABTEILUNGEN -> abteilungenBearbeiten.exec();
+                case ABTEILUNGEN -> abteilungenErstellen.exec();
                 case LOGOUT -> UserHelper.logout();
                 case BEENDEN -> running = false;
                 case null -> running = false;
