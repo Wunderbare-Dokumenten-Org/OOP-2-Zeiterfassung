@@ -64,15 +64,22 @@ public class MitarbeiterService implements IMitarbeiterService {
     @Override
     public Mitarbeiter bearbeiteMitarbeiter(
             @NotNull Mitarbeiter mitarbeiter,
-            @NotNull final String name,
-            @NotNull final String vorname,
+            final String name,
+            final String vorname,
             final Abteilung abteilung
     ) {
-        if (!name.isBlank())
+        if (name != null && !name.isBlank())
             mitarbeiter.setName(name);
 
-        if (!vorname.isBlank())
+        if (vorname != null && !vorname.isBlank())
             mitarbeiter.setVorname(vorname);
+
+        var email = "%s.%s@%s.de".formatted(vorname, name, EnviromentHelper.gibFirma());
+        if (mitarbeiterRepository.findByEmail(email) != null) {
+            log.error("Mitarbeiter mit der Email: '%s' existiert bereits".formatted(email));
+            return null;
+        }
+        mitarbeiter.setEmail(email);
 
         if (abteilung != null)
             mitarbeiter.setAbteilung(abteilung);
