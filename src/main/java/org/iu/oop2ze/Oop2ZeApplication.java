@@ -11,6 +11,11 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
+/**
+ * Klasse, welche den Einstiegspunkt, der Anwendung beinhaltet
+ *
+ * @author Julius Beier
+ */
 @SpringBootApplication
 @ComponentScan(basePackages = "org.iu.oop2ze",
         includeFilters = @ComponentScan.Filter(InheritComponent.class))

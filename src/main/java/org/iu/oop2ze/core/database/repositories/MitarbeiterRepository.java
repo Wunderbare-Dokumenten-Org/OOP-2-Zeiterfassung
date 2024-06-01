@@ -6,6 +6,11 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
+/**
+ * Interface, um die Datenbank für Mitarbeiter abzufragen (wird automatisch implementiert)
+ *
+ * @author Julius Beier
+ */
 public interface MitarbeiterRepository extends CrudRepository<Mitarbeiter, Long> {
     Mitarbeiter findByPersonalnummer(final String personalnummer);
 

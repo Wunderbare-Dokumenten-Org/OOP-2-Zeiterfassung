@@ -6,11 +6,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 
+/**
+ * Basis Klasse für alle Datenbank Entitäten
+ *
+ * @author Julius Beier
+ */
 @Getter
 @Setter
 @MappedSuperclass
@@ -19,9 +24,9 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CreatedDate
+    @CreationTimestamp
     private Date erstellt;
 
-    @LastModifiedDate
+    @UpdateTimestamp
     private Date bearbeitet;
 }

@@ -8,6 +8,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.iu.oop2ze.core.database.models.abstracts.BaseEntity;
 
+/**
+ * Stellt eine Abteilung, in der Datenbank dar
+ *
+ * @author Julius Beier
+ */
 @Getter
 @Setter
 @AllArgsConstructor

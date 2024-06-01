@@ -11,6 +11,14 @@ import org.iu.oop2ze.ui.cli.menues.global.ActionMenu;
 
 import java.util.List;
 
+/**
+ * Klasse, welche einen Mitarbeiter auswählen lässt
+ * und Aktionen mit diesem Mitarbeiter ausführt
+ *
+ * @author Julius Beier
+ * @see CliComponent
+ * @see org.iu.oop2ze.ui.cli.menues.global.ActionMenuOptions
+ */
 public class MitarbeiterAuflistenView extends CliComponent {
     @LazyInject
     private IMitarbeiterService mitarbeiterService;

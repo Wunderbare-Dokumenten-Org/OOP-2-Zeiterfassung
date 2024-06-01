@@ -7,6 +7,12 @@ import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 
 import java.util.Scanner;
 
+/**
+ * Klasse, welche einen Mitarbeiter in der Konsole ausgibt
+ *
+ * @author Julius Beier
+ * @see CliComponent
+ */
 public class MitarbeiterAnzeigenView extends CliComponent {
     @Setter
     private Mitarbeiter ausgewaehlterMitarbeiter;

@@ -10,6 +10,12 @@ import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 import org.iu.oop2ze.ui.cli.helpers.PromptHelper;
 
+/**
+ * Klasse, welche einen Mitarbeiter bearbeiten lässt
+ *
+ * @author Julius Beier
+ * @see CliComponent
+ */
 public class MitarbeiterBearbeitenView extends CliComponent {
     @LazyInject
     private IMitarbeiterService mitarbeiterService;

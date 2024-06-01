@@ -8,6 +8,12 @@ import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 import org.iu.oop2ze.ui.cli.helpers.PromptHelper;
 import org.iu.oop2ze.ui.cli.helpers.UserHelper;
 
+/**
+ * Klasse, welche den Login darstellt
+ *
+ * @author Julius Beier
+ * @see CliComponent
+ */
 public class LoginView extends CliComponent {
     @LazyInject
     private IMitarbeiterService mitarbeiterService;

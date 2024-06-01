@@ -24,16 +24,6 @@ public class MitarbeiterService implements IMitarbeiterService {
     @Autowired
     private MitarbeiterRepository mitarbeiterRepository;
 
-    /**
-     * Erstellt einen Mitarbeiter (Passwort wird beim ersten Login des Mitarbeiters durch Ihn gestetzt)
-     *
-     * @param name           Name des Mitarbeiters
-     * @param vorname        Vorname des Mitarbeiters
-     * @param personalnummer Personalnummer des Mitarbeiters
-     * @param abteilung      Abteilung, welcher der Mitarbeiter zugeordnet wird
-     * @return Neu erstellten Mitarbeiter
-     * @author Julius Beier
-     */
     public Mitarbeiter erstelleMitarbeiter(
             @NotNull final String name,
             @NotNull final String vorname,

@@ -12,6 +12,11 @@ import org.iu.oop2ze.core.database.models.abstracts.enums.StatusType;
 
 import java.util.Date;
 
+/**
+ * Stellt einen Antrag, in der Datenbank dar
+ *
+ * @author Julius Beier
+ */
 @Getter
 @Setter
 @AllArgsConstructor

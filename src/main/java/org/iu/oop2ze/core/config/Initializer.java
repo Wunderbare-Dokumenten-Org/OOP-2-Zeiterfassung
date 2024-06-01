@@ -7,6 +7,11 @@ import org.iu.oop2ze.core.database.repositories.MitarbeiterRepository;
 import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.springframework.stereotype.Component;
 
+/**
+ * Initialisiert die Datenbank
+ *
+ * @author Julius Beier
+ */
 @Component
 public class Initializer {
     @LazyInject
@@ -15,6 +20,11 @@ public class Initializer {
     @LazyInject
     private AbteilungRepository abteilungRepository;
 
+    /**
+     * Erstellt, falls nötig, einen Systemadministrator und eine Abteilung (Hr)
+     *
+     * @author Julius Beier
+     */
     public void initDb() {
         Mitarbeiter sysAdmin = mitarbeiterRepository.findByIsSysAdmin(true);
         if (sysAdmin == null) {

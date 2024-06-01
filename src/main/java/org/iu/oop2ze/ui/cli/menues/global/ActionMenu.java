@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Klasse, welche die Aktionsmenüs, der Nutzer beschreibt
+ *
+ * @author Julius Beier
+ * @see org.iu.oop2ze.ui.cli.views.mitarbeiter.MitarbeiterAuflistenView
+ * @see ActionMenuOptions
+ */
 public class ActionMenu {
     public static final List<ActionMenuOptions> ADMIN = Arrays.asList(
             ActionMenuOptions.ANZEIGEN,

@@ -8,8 +8,12 @@ import org.iu.oop2ze.ui.cli.helpers.UserHelper;
 import org.iu.oop2ze.ui.cli.menues.home.HomeMenu;
 import org.iu.oop2ze.ui.cli.views.mitarbeiter.MitarbeiterMenuView;
 
-import java.util.Date;
-
+/**
+ * Klasse, welche das Home Menü anzeigt
+ *
+ * @author Julius Beier
+ * @see CliComponent
+ */
 public class HomeView extends CliComponent {
     @LazyInject
     private LoginView loginView;
@@ -17,10 +21,10 @@ public class HomeView extends CliComponent {
     @LazyInject
     private MitarbeiterMenuView mitarbeiterMenuView;
 
-    private Boolean running = true;
-
     @Override
     public void exec() {
+        var running = true;
+
         do {
             EingabeHelper.clearConsole();
 
@@ -37,7 +41,6 @@ public class HomeView extends CliComponent {
                 case LOGOUT -> UserHelper.logout();
                 case BEENDEN -> running = false;
                 case null -> running = false;
-                default -> throw new IllegalStateException();
             }
         } while (running);
     }

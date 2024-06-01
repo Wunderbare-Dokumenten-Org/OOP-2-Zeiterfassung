@@ -24,15 +24,6 @@ public class AntragService implements IAntragService {
     @Autowired
     private AntragRepository antragRepository;
 
-    /**
-     * Erstellt einen Antrag
-     *
-     * @param stellenderMitarbeiter Der Mitarbeiter, welcher den Antrag stellt
-     * @param type                  Der Type des Antrags
-     * @param datum                 Das Datum, für wann der Antrag gedacht ist
-     * @return Den erstellten Antrag
-     * @author Julius Beier, Leon Dieringer
-     */
     @Override
     public Antrag erstelleAntrag(
             @NotNull final Mitarbeiter stellenderMitarbeiter,
@@ -49,18 +40,6 @@ public class AntragService implements IAntragService {
         return antrag;
     }
 
-    /**
-     * Bearbeitet einen Antrag
-     *
-     * @param antrag Der zu bearbeitende Antrag
-     * @param type   Der Type des Antrags
-     * @param datum  Das Datum des Antrags
-     * @param status Der Status des Antrags
-     * @param kommentar Der kommentar für Antrag
-     * @param bearbeitenderMitarbeiter Der Bearbeitdende Mitarbeiter
-     * @return Den bearbeiteten Antrag
-     * @author Julius Beier, Leon Dieringer
-     */
     @Override
     public Antrag bearbeiteAntrag(
             @NotNull Antrag antrag,
@@ -89,16 +68,8 @@ public class AntragService implements IAntragService {
         return antrag;
     }
 
-    /**
-     * Löscht einen Antrag
-     *
-     * @param antrag Der zu löschende Antrag
-     * @author Julius Beier
-     */
     @Override
     public void loescheAntrag(@NotNull final Antrag antrag) {
         antragRepository.delete(antrag);
     }
-
-
-};
+}
