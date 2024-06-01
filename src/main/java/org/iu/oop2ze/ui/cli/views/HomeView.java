@@ -8,6 +8,8 @@ import org.iu.oop2ze.ui.cli.helpers.UserHelper;
 import org.iu.oop2ze.ui.cli.menues.home.HomeMenu;
 import org.iu.oop2ze.ui.cli.views.mitarbeiter.MitarbeiterMenuView;
 
+import java.util.Date;
+
 public class HomeView extends CliComponent {
     @LazyInject
     private LoginView loginView;
