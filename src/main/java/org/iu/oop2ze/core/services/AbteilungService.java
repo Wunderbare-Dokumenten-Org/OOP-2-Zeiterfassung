@@ -8,6 +8,9 @@ import org.iu.oop2ze.core.services.interfaces.IAbteilungService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Klasse, welche Funktionen und Methoden für Abteilungen beinhaltet
  *
@@ -17,16 +20,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class AbteilungService implements IAbteilungService {
     @Autowired
-    AbteilungRepository abteilungRepository;
+    private AbteilungRepository abteilungRepository;
 
-    /**
-     * Erstellt eine neue Abteilung
-     *
-     * @param name                 Name der Abteilung
-     * @param leitenderMitarbeiter Leitender Mitarbeiter der Abteilung
-     * @return Die neu erstellte Abteilung
-     * @author Julius Beier
-     */
+    @Override
     public Abteilung erstelleAbteilung(final String name, final Boolean isHr, final Mitarbeiter leitenderMitarbeiter) {
         if (name.isBlank() || leitenderMitarbeiter == null || isHr == null) {
             throw new IllegalArgumentException();
@@ -43,15 +39,7 @@ public class AbteilungService implements IAbteilungService {
         return abteilung;
     }
 
-    /**
-     * Bearbeitet eine Abteilung
-     *
-     * @param abteilung            Instanz der zubearbeitenden Abteilung
-     * @param name                 Name der Abteilung
-     * @param leitenderMitarbeiter Leitender Mitarbeiter der Abteilung
-     * @return Die neu erstellte Abteilung
-     * @author Julius Beier
-     */
+    @Override
     public Abteilung bearbeiteAbteilung(
             Abteilung abteilung,
             final String name,
@@ -71,12 +59,20 @@ public class AbteilungService implements IAbteilungService {
         return abteilung;
     }
 
+    @Override
     public void loescheAbteilung(final Abteilung abteilung) {
         if (abteilung == null) {
             throw new IllegalArgumentException();
         }
 
         abteilungRepository.delete(abteilung);
+    }
+
+    @Override
+    public List<Abteilung> findeAlle() {
+        var abteilungen = new ArrayList<Abteilung>();
+        abteilungRepository.findAll().forEach(abteilungen::add);
+        return abteilungen;
     }
 
     /**

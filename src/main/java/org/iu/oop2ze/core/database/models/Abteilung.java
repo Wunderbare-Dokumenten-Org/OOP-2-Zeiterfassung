@@ -1,14 +1,18 @@
 package org.iu.oop2ze.core.database.models;
 
-import jakarta.persistence.*;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.iu.oop2ze.core.database.models.abstracts.BaseEntity;
 
-import lombok.Getter;
-import lombok.Setter;
-
+/**
+ * Stellt eine Abteilung, in der Datenbank dar
+ *
+ * @author Julius Beier
+ */
 @Getter
 @Setter
 @AllArgsConstructor

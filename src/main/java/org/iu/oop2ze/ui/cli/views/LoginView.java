@@ -3,13 +3,19 @@ package org.iu.oop2ze.ui.cli.views;
 import org.iu.oop2ze.core.database.models.Mitarbeiter;
 import org.iu.oop2ze.core.services.interfaces.IMitarbeiterService;
 import org.iu.oop2ze.ui.cli.abstracts.CliComponent;
+import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 import org.iu.oop2ze.ui.cli.helpers.PromptHelper;
 import org.iu.oop2ze.ui.cli.helpers.UserHelper;
-import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Klasse, welche den Login darstellt
+ *
+ * @author Julius Beier
+ * @see CliComponent
+ */
 public class LoginView extends CliComponent {
-    @Autowired
+    @LazyInject
     private IMitarbeiterService mitarbeiterService;
 
     @Override
