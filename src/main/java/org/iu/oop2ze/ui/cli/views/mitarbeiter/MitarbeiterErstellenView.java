@@ -8,8 +8,6 @@ import org.iu.oop2ze.ui.cli.abstracts.CliComponent;
 import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 
-import java.util.Scanner;
-
 /**
  * Klasse, welche einen Mitarbeiter erstellen lässt
  *
@@ -38,7 +36,7 @@ public class MitarbeiterErstellenView extends CliComponent {
             var abteilung = EingabeHelper.menuEinzelEingabe("Abteilung des Mitarbeiters", abteilungService.findeAlle(), Abteilung::getName);
 
             neuerMitarbeiter = mitarbeiterService.erstelleMitarbeiter(name, vorname, personalnummer, abteilung);
-            new Scanner(System.in).nextLine();
         } while (neuerMitarbeiter == null);
+        EingabeHelper.stringEingabe("<ENTER> zum Fortfahren", "<ENTER>");
     }
 }

@@ -6,6 +6,7 @@ import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 import org.iu.oop2ze.ui.cli.helpers.MenuHelper;
 import org.iu.oop2ze.ui.cli.helpers.UserHelper;
 import org.iu.oop2ze.ui.cli.menues.home.HomeMenu;
+import org.iu.oop2ze.ui.cli.views.abteilung.AbteilungMenuView;
 import org.iu.oop2ze.ui.cli.views.mitarbeiter.MitarbeiterMenuView;
 
 /**
@@ -21,6 +22,12 @@ public class HomeView extends CliComponent {
     @LazyInject
     private MitarbeiterMenuView mitarbeiterMenuView;
 
+    @LazyInject
+    private AbteilungMenuView abteilungMenuView;
+
+    @LazyInject
+    private HomeMenu homeMenu;
+
     @Override
     public void exec() {
         var running = true;
@@ -31,12 +38,13 @@ public class HomeView extends CliComponent {
             if (!UserHelper.isAngemeldet())
                 loginView.exec();
 
-            var menu = MenuHelper.gibUserMenu(HomeMenu.ADMIN, HomeMenu.HR, HomeMenu.MITARBEITER);
+            var menu = MenuHelper.gibUserMenu(homeMenu.getAdmin(), homeMenu.getHr(), homeMenu.getMitarbeiter());
             var result = EingabeHelper.menuEinzelEingabe("Willkommen beim Zeiterfassungssystem", menu, null);
 
             switch (result) {
-                case ANTRAEGE, ARBEITSZEITEN, ABTEILUNGEN -> {
+                case ANTRAEGE, ARBEITSZEITEN -> {
                 }
+                case ABTEILUNGEN -> abteilungMenuView.exec();
                 case MITARBEITER -> mitarbeiterMenuView.exec();
                 case LOGOUT -> UserHelper.logout();
                 case BEENDEN -> running = false;

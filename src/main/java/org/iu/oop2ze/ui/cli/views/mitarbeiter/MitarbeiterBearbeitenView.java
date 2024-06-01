@@ -40,13 +40,17 @@ public class MitarbeiterBearbeitenView extends CliComponent {
         var vornamePrompt = PromptHelper.erstellInputPrompt("Vorname des Mitarbeiters%s: ", ausgewaehlterMitarbeiter.getVorname());
         var vorname = EingabeHelper.stringEingabe(vornamePrompt, ausgewaehlterMitarbeiter.getVorname());
 
-        var mitarbeiterAbteilung = ausgewaehlterMitarbeiter.getAbteilung();
+        var currentAbteilung = ausgewaehlterMitarbeiter.getAbteilung();
         var abteilungPrompt = PromptHelper.erstellInputPrompt(
                 "Abteilung des Mitarbeiters%s: ",
-                mitarbeiterAbteilung == null ? "" : mitarbeiterAbteilung.getName());
+                currentAbteilung == null ? "" : currentAbteilung.getName());
         var abteilung = EingabeHelper.menuEinzelEingabe(abteilungPrompt, abteilungService.findeAlle(), Abteilung::getName);
+
+        if (abteilung == null && currentAbteilung != null)
+            abteilung = currentAbteilung;
 
         mitarbeiterService.bearbeiteMitarbeiter(ausgewaehlterMitarbeiter, name, vorname, abteilung);
         ausgewaehlterMitarbeiter = null;
+        EingabeHelper.stringEingabe("<ENTER> zum Fortfahren", "<ENTER>");
     }
 }

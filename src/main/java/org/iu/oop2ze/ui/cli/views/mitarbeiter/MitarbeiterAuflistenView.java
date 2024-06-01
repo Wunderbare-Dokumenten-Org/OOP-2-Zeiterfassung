@@ -7,7 +7,7 @@ import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 import org.iu.oop2ze.ui.cli.helpers.MenuHelper;
 import org.iu.oop2ze.ui.cli.helpers.UserHelper;
-import org.iu.oop2ze.ui.cli.menues.global.ActionMenu;
+import org.iu.oop2ze.ui.cli.menues.mitarbeiter.MitarbeiterAuflistenMenu;
 
 import java.util.List;
 
@@ -17,7 +17,6 @@ import java.util.List;
  *
  * @author Julius Beier
  * @see CliComponent
- * @see org.iu.oop2ze.ui.cli.menues.global.ActionMenuOptions
  */
 public class MitarbeiterAuflistenView extends CliComponent {
     @LazyInject
@@ -28,6 +27,9 @@ public class MitarbeiterAuflistenView extends CliComponent {
 
     @LazyInject
     private MitarbeiterBearbeitenView mitarbeiterBearbeiteView;
+
+    @LazyInject
+    private MitarbeiterAuflistenMenu mitarbeiterAuflistenMenu;
 
     @Override
     public void exec() {
@@ -48,7 +50,8 @@ public class MitarbeiterAuflistenView extends CliComponent {
         });
 
         if (ausgewaehlterMitarbeiter != null) {
-            var menu = MenuHelper.gibUserMenu(ActionMenu.ADMIN, ActionMenu.HR, ActionMenu.MITARBEITER);
+            var menu = MenuHelper.gibUserMenu(mitarbeiterAuflistenMenu.getAdmin(),
+                    mitarbeiterAuflistenMenu.getHr(), mitarbeiterAuflistenMenu.getMitarbeiter());
             var actionResult = EingabeHelper.menuEinzelEingabe("Wählen Sie eine Aktion", menu, null);
 
             switch (actionResult) {
