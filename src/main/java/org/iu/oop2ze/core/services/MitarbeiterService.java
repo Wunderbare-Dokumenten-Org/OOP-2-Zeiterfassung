@@ -50,6 +50,10 @@ public class MitarbeiterService implements IMitarbeiterService {
         }
 
         var email = "%s.%s@%s.de".formatted(vorname, name, EnviromentHelper.gibFirma());
+        if (mitarbeiterRepository.findByEmail(email) != null) {
+            log.error("Mitarbeiter mit der Email: '%s' existiert bereits".formatted(email));
+            return null;
+        }
 
         var mitarbeiter = new Mitarbeiter(name, vorname, personalnummer, false, abteilung, email, "");
 
