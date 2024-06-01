@@ -26,7 +26,7 @@ public class HomeView extends CliComponent {
                 loginView.exec();
 
             var menu = MenuHelper.gibUserMenu(HomeMenu.ADMIN, HomeMenu.HR, HomeMenu.MITARBEITER);
-            var result = EingabeHelper.menuEinzelEingabe("Willkommen beim Zeiterfassungssystem", menu);
+            var result = EingabeHelper.menuEinzelEingabe("Willkommen beim Zeiterfassungssystem", menu, null);
 
             switch (result) {
                 case ANTRAEGE, ARBEITSZEITEN, ABTEILUNGEN -> {

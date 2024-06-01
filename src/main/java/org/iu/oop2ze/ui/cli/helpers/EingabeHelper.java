@@ -1,5 +1,6 @@
 package org.iu.oop2ze.ui.cli.helpers;
 
+import org.iu.oop2ze.ui.cli.abstracts.MenuComponent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
@@ -15,7 +16,9 @@ public class EingabeHelper {
     }
 
     // NOTE: vllt multipage support???
-    public static <T> T menuEinzelEingabe(@NotNull final String title, @NotNull final List<T> options) {
+    public static <T> T menuEinzelEingabe(@NotNull final String title,
+                                          @NotNull final List<T> options,
+                                          MenuComponent<T> menuComponent) {
         if (options.isEmpty())
             return null;
 
@@ -23,9 +26,13 @@ public class EingabeHelper {
 
         propmt.append("%s\n".formatted(title));
 
+        if (menuComponent == null)
+            menuComponent = (T m) -> {return m.toString();};
+
         int i = 1;
         for (Iterator<T> iter = options.iterator(); iter.hasNext(); i++) {
-            propmt.append("\t%d: %s\n".formatted(i, iter.next().toString()));
+            var item = iter.next();
+            propmt.append("\t%d: %s\n".formatted(i, menuComponent.getMenuEntry(item)));
         }
 
         propmt.append("Wählen Sie eine Option (%d - %d):".formatted(1, options.size()));
