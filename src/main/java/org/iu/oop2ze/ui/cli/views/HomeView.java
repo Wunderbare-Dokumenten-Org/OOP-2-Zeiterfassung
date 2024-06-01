@@ -1,21 +1,18 @@
 package org.iu.oop2ze.ui.cli.views;
 
 import org.iu.oop2ze.ui.cli.abstracts.CliComponent;
+import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 import org.iu.oop2ze.ui.cli.helpers.MenuHelper;
 import org.iu.oop2ze.ui.cli.helpers.UserHelper;
 import org.iu.oop2ze.ui.cli.menues.home.HomeMenu;
 import org.iu.oop2ze.ui.cli.views.mitarbeiter.MitarbeiterMenuView;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 
 public class HomeView extends CliComponent {
-    @Lazy
-    @Autowired
+    @LazyInject
     private LoginView loginView;
 
-    @Lazy
-    @Autowired
+    @LazyInject
     private MitarbeiterMenuView mitarbeiterMenuView;
 
     private Boolean running = true;
