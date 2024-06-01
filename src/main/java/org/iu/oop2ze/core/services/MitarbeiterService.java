@@ -95,7 +95,19 @@ public class MitarbeiterService implements IMitarbeiterService {
 
     @Override
     public Mitarbeiter findeMitarbeiterMitLogin(@NotNull final String email, @NotNull final String passwort) {
-        return mitarbeiterRepository.findByEmailAndPasswort(email, passwort);
+        var mitarbeiter = mitarbeiterRepository.findByEmailAndPasswort(email, passwort);
+
+        if (mitarbeiter == null) {
+            mitarbeiter = mitarbeiterRepository.findByEmail(email);
+            if (mitarbeiter != null && mitarbeiter.getPasswort().isBlank()) {
+                mitarbeiter.setPasswort(passwort);
+                mitarbeiterRepository.save(mitarbeiter);
+
+                return mitarbeiter;
+            }
+        }
+
+        return mitarbeiter;
     }
 
     public List<Mitarbeiter> findeAlleMitarbeiter() {
@@ -105,8 +117,6 @@ public class MitarbeiterService implements IMitarbeiterService {
             if (!m.getIsSysAdmin())
                 mitarbeiter.add(m);
         }
-
-        mitarbeiterRepository.findAll().forEach(mitarbeiter::add);
 
         return mitarbeiter;
     }
