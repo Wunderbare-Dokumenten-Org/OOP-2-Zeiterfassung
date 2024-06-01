@@ -36,14 +36,20 @@ public class AbteilungAuflistenView extends CliComponent {
     public void exec() {
         List<Abteilung> abteilungen = abteilungService.findeAlle();
 
-        var ausgewaehlteAbteilung = EingabeHelper.menuEinzelEingabe("Wählen Sie einen Mitarbeiter aus", abteilungen, (Abteilung a) -> {
+        EingabeHelper.clearConsole();
+
+        var ausgewaehlteAbteilung = EingabeHelper.menuEinzelEingabe("Wählen Sie eine Abteilung aus", abteilungen, (Abteilung a) -> {
             return "%s".formatted(a.getName());
         });
 
         if (ausgewaehlteAbteilung != null) {
             var menu = MenuHelper.gibUserMenu(abteilungAuflistenMenu.getAdmin(),
                     abteilungAuflistenMenu.getHr(), abteilungAuflistenMenu.getMitarbeiter());
+
             var actionResult = EingabeHelper.menuEinzelEingabe("Wählen Sie eine Aktion", menu, null);
+
+            if (actionResult == null)
+                return;
 
             switch (actionResult) {
                 case ANZEIGEN -> {

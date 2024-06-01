@@ -42,7 +42,7 @@ public class MitarbeiterAuflistenView extends CliComponent {
         } else if (user.getAbteilung().getIsHr()) {
             mitarbeiter = mitarbeiterService.findeAlleMitarbeiterFuerAbteilung(user.getAbteilung());
         } else {
-            throw new IllegalStateException();
+            throw new IllegalStateException("Normale Mitarbeiter haben keinen Zugriff auf die Mitarbeiter Verwaltung");
         }
 
         var ausgewaehlterMitarbeiter = EingabeHelper.menuEinzelEingabe("Wählen Sie einen Mitarbeiter aus", mitarbeiter, (Mitarbeiter m) -> {
@@ -53,6 +53,9 @@ public class MitarbeiterAuflistenView extends CliComponent {
             var menu = MenuHelper.gibUserMenu(mitarbeiterAuflistenMenu.getAdmin(),
                     mitarbeiterAuflistenMenu.getHr(), mitarbeiterAuflistenMenu.getMitarbeiter());
             var actionResult = EingabeHelper.menuEinzelEingabe("Wählen Sie eine Aktion", menu, null);
+
+            if (actionResult == null)
+                return;
 
             switch (actionResult) {
                 case ANZEIGEN -> {

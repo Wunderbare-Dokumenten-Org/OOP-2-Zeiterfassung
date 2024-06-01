@@ -40,6 +40,8 @@ public class LoginView extends CliComponent {
             passwort = EingabeHelper.stringEingabe(passwortPrompt, passwort);
 
             user = mitarbeiterService.findeMitarbeiterMitLogin(email, passwort);
+            if (user == null)
+                EingabeHelper.stringEingabe("<ENTER> zum Fortfahren", "<ENTER>");
         } while (user == null);
 
         UserHelper.login(user);

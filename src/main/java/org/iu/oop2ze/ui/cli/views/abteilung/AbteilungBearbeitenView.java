@@ -28,6 +28,7 @@ public class AbteilungBearbeitenView extends CliComponent {
         EingabeHelper.clearConsole();
 
         System.out.println("Abteilung - Bearbeiten");
+
         var namePrompt = PromptHelper.erstellInputPrompt("Name der Abteilung%s: ", ausgewaehlteAbteilung.getName());
         var name = EingabeHelper.stringEingabe(namePrompt, ausgewaehlteAbteilung.getName());
 
