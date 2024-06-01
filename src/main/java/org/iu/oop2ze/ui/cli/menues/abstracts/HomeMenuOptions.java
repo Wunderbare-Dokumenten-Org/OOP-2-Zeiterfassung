@@ -1,4 +1,6 @@
-package org.iu.oop2ze.ui.cli.menues.home;
+package org.iu.oop2ze.ui.cli.menues.abstracts;
+
+import org.iu.oop2ze.ui.cli.menues.home.HomeMenu;
 
 /**
  * Enum, welcher die HomeView Menüoptionen beschreibt

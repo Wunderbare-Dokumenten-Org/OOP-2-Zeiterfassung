@@ -1,4 +1,4 @@
-package org.iu.oop2ze.ui.cli.menues.mitarbeiter;
+package org.iu.oop2ze.ui.cli.menues.abteilung;
 
 import org.iu.oop2ze.ui.cli.menues.abstracts.BaseMenu;
 import org.iu.oop2ze.ui.cli.menues.abstracts.MenuViewMenuOptions;
@@ -11,19 +11,15 @@ import java.util.Arrays;
  *
  * @author Julius Beier
  */
-public class MitarbeiterMenu extends BaseMenu<MenuViewMenuOptions> {
-    public MitarbeiterMenu() {
+public class AbteilungMenu extends BaseMenu<MenuViewMenuOptions> {
+    public AbteilungMenu() {
         this.admin = Arrays.asList(
                 MenuViewMenuOptions.AUFLISTEN,
                 MenuViewMenuOptions.ERSTELLEN,
                 MenuViewMenuOptions.ZURUECK
         );
 
-        this.hr = Arrays.asList(
-                MenuViewMenuOptions.AUFLISTEN,
-                MenuViewMenuOptions.ERSTELLEN,
-                MenuViewMenuOptions.ZURUECK
-        );
+        this.hr = new ArrayList<>();
 
         this.mitarbeiter = new ArrayList<>();
     }
