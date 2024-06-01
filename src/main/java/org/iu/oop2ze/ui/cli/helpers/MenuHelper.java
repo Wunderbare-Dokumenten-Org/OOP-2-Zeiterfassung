@@ -1,5 +1,8 @@
 package org.iu.oop2ze.ui.cli.helpers;
 
+import org.iu.oop2ze.ui.cli.abstracts.CliComponent;
+import org.iu.oop2ze.ui.cli.menues.abstracts.BaseMenu;
+import org.iu.oop2ze.ui.cli.menues.abstracts.MenuViewMenuOptions;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -21,7 +24,6 @@ public class MenuHelper {
      * @return Das Menü, welches der angemeldete Mitarbeiter sieht
      * @author Julius Beier
      * @see org.iu.oop2ze.ui.cli.menues.home.HomeMenu
-     * @see org.iu.oop2ze.ui.cli.menues.global.ActionMenu
      * @see org.iu.oop2ze.ui.cli.menues.mitarbeiter.MitarbeiterMenu
      */
     public static <T> List<T> gibUserMenu(
@@ -43,5 +45,21 @@ public class MenuHelper {
         }
 
         throw new IllegalStateException();
+    }
+
+    public static void runMenu(CliComponent auflistenView, CliComponent erstellenView, BaseMenu<MenuViewMenuOptions> menues) {
+        var running = true;
+
+        do {
+            var menu = MenuHelper.gibUserMenu(menues.getAdmin(), menues.getHr(), menues.getMitarbeiter());
+            var result = EingabeHelper.menuEinzelEingabe("Wählen Sie eine Aktion aus", menu, null);
+
+            switch (result) {
+                case AUFLISTEN -> auflistenView.exec();
+                case ERSTELLEN -> erstellenView.exec();
+                case ZURUECK -> running = false;
+                case null -> running = false;
+            }
+        } while (running);
     }
 }
