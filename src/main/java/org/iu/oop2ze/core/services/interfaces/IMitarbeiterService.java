@@ -11,7 +11,4 @@ public interface IMitarbeiterService {
     void loescheMitarbeiter(final Mitarbeiter mitarbeiter);
 
     Mitarbeiter findeMitarbeiterMitLogin(final String email, final String passwort);
-
-    Mitarbeiter findeMitarbeiterNachId(Long id);
-    Mitarbeiter findeMitarbeiterNachName(String name);
 }

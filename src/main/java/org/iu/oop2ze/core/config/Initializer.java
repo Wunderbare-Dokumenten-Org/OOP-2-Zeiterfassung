@@ -32,15 +32,5 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
             Abteilung defaultHr = new Abteilung("Human Resources", true, sysAdmin);
             abteilungRepository.save(defaultHr);
         }
-        Mitarbeiter secondSysAdmin = mitarbeiterRepository.findByName("Nico");
-        if (secondSysAdmin == null) {
-            secondSysAdmin = new Mitarbeiter("Nico", "Nico", "1", true, null, "nico@nico.de", "password");
-            mitarbeiterRepository.save(secondSysAdmin);
-        }
-        Mitarbeiter user1 = mitarbeiterRepository.findByName("User1");
-        if (user1 == null) {
-            user1 = new Mitarbeiter("Test","Nico","2",true,null,"user1@nico.de","12345678");
-            mitarbeiterRepository.save(user1);
-        }
     }
 }

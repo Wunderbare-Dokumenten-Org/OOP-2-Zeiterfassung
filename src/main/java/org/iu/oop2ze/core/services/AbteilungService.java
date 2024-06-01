@@ -81,39 +81,4 @@ public class AbteilungService implements IAbteilungService {
 
         abteilungRepository.delete(abteilung);
     }
-
-    @Override
-    public List<Abteilung> findeAlleAbteilungen() {
-        List<Abteilung> abteilung = new ArrayList<>();
-        abteilungRepository.findAll().forEach(abteilung::add);
-        return abteilung;
-    }
-
-    /**
-     * Findet Abteilungen mit dem übergebenen Namen
-     *
-     * @param name Name der Abteilung nach welcher gesucht wird
-     * @return Die gesuchte Abteilung
-     * @author Julius Beier
-     */
-
-    @Override
-    public Abteilung findeAbteilungNachId(Long id) {
-        return abteilungRepository.findById(id).orElse(null);
-    }
-    public Abteilung findeAbteilungNachName(final String name) {
-        if (name.isBlank()) {
-            throw new IllegalArgumentException();
-        }
-
-        var abteilung = abteilungRepository.findByName(name);
-
-        if (abteilung == null) {
-            log.error("Abteilung mit dem Namen: '%s' konnte nicht gefunden werden".formatted(name));
-            return null;
-        }
-
-        return abteilung;
-    }
-
 }
