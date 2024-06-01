@@ -10,6 +10,9 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Klasse, welche Funktionen und Methoden für Mitarbeiter beinhaltet
  *
@@ -21,16 +24,6 @@ public class MitarbeiterService implements IMitarbeiterService {
     @Autowired
     private MitarbeiterRepository mitarbeiterRepository;
 
-    /**
-     * Erstellt einen Mitarbeiter (Passwort wird beim ersten Login des Mitarbeiters durch Ihn gestetzt)
-     *
-     * @param name           Name des Mitarbeiters
-     * @param vorname        Vorname des Mitarbeiters
-     * @param personalnummer Personalnummer des Mitarbeiters
-     * @param abteilung      Abteilung, welcher der Mitarbeiter zugeordnet wird
-     * @return Neu erstellten Mitarbeiter
-     * @author Julius Beier
-     */
     public Mitarbeiter erstelleMitarbeiter(
             @NotNull final String name,
             @NotNull final String vorname,
@@ -47,6 +40,10 @@ public class MitarbeiterService implements IMitarbeiterService {
         }
 
         var email = "%s.%s@%s.de".formatted(vorname, name, EnviromentHelper.gibFirma());
+        if (mitarbeiterRepository.findByEmail(email) != null) {
+            log.error("Mitarbeiter mit der Email: '%s' existiert bereits".formatted(email));
+            return null;
+        }
 
         var mitarbeiter = new Mitarbeiter(name, vorname, personalnummer, false, abteilung, email, "");
 
@@ -57,15 +54,22 @@ public class MitarbeiterService implements IMitarbeiterService {
     @Override
     public Mitarbeiter bearbeiteMitarbeiter(
             @NotNull Mitarbeiter mitarbeiter,
-            @NotNull final String name,
-            @NotNull final String vorname,
+            final String name,
+            final String vorname,
             final Abteilung abteilung
     ) {
-        if (!name.isBlank())
+        if (name != null && !name.isBlank())
             mitarbeiter.setName(name);
 
-        if (!vorname.isBlank())
+        if (vorname != null && !vorname.isBlank())
             mitarbeiter.setVorname(vorname);
+
+        var email = "%s.%s@%s.de".formatted(vorname, name, EnviromentHelper.gibFirma());
+        if (mitarbeiterRepository.findByEmail(email) != null) {
+            log.error("Mitarbeiter mit der Email: '%s' existiert bereits".formatted(email));
+            return null;
+        }
+        mitarbeiter.setEmail(email);
 
         if (abteilung != null)
             mitarbeiter.setAbteilung(abteilung);
@@ -81,6 +85,33 @@ public class MitarbeiterService implements IMitarbeiterService {
 
     @Override
     public Mitarbeiter findeMitarbeiterMitLogin(@NotNull final String email, @NotNull final String passwort) {
-        return mitarbeiterRepository.findByEmailAndPasswort(email, passwort);
+        var mitarbeiter = mitarbeiterRepository.findByEmailAndPasswort(email, passwort);
+
+        if (mitarbeiter == null) {
+            mitarbeiter = mitarbeiterRepository.findByEmail(email);
+            if (mitarbeiter != null && mitarbeiter.getPasswort().isBlank()) {
+                mitarbeiter.setPasswort(passwort);
+                mitarbeiterRepository.save(mitarbeiter);
+
+                return mitarbeiter;
+            }
+        }
+
+        return mitarbeiter;
+    }
+
+    public List<Mitarbeiter> findeAlleMitarbeiter() {
+        List<Mitarbeiter> mitarbeiter = new ArrayList<>();
+
+        for (Mitarbeiter m : mitarbeiterRepository.findAll()) {
+            if (!m.getIsSysAdmin())
+                mitarbeiter.add(m);
+        }
+
+        return mitarbeiter;
+    }
+
+    public List<Mitarbeiter> findeAlleMitarbeiterFuerAbteilung(@NotNull final Abteilung abteilung) {
+        return new ArrayList<>(mitarbeiterRepository.findAllByAbteilung(abteilung));
     }
 }
