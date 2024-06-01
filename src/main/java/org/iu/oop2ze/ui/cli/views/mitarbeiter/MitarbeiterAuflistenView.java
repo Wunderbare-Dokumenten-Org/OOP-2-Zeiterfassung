@@ -3,17 +3,23 @@ package org.iu.oop2ze.ui.cli.views.mitarbeiter;
 import org.iu.oop2ze.core.database.models.Mitarbeiter;
 import org.iu.oop2ze.core.services.interfaces.IMitarbeiterService;
 import org.iu.oop2ze.ui.cli.abstracts.CliComponent;
+import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
+import org.iu.oop2ze.ui.cli.helpers.MenuHelper;
 import org.iu.oop2ze.ui.cli.helpers.UserHelper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
+import org.iu.oop2ze.ui.cli.menues.global.ActionMenu;
 
 import java.util.List;
 
 public class MitarbeiterAuflistenView extends CliComponent {
-    @Lazy
-    @Autowired
+    @LazyInject
     private IMitarbeiterService mitarbeiterService;
+
+    @LazyInject
+    private MitarbeiterAnzeigenView mitarbeiterAnzeigeView;
+
+    @LazyInject
+    private MitarbeiterBearbeitenView mitarbeiterBearbeiteView;
 
     @Override
     public void exec() {
@@ -29,7 +35,25 @@ public class MitarbeiterAuflistenView extends CliComponent {
             throw new IllegalStateException();
         }
 
-        var res = EingabeHelper.menuEinzelEingabe("Wählen Sie einen Mitarbeiter aus", mitarbeiter);
-        if (res != null) System.out.println(res.getName());
+        var ausgewaehlterMitarbeiter = EingabeHelper.menuEinzelEingabe("Wählen Sie einen Mitarbeiter aus", mitarbeiter, (Mitarbeiter m) -> {
+            return "%s, %s".formatted(m.getName(), m.getVorname());
+        });
+
+        if (ausgewaehlterMitarbeiter != null) {
+            var menu = MenuHelper.gibUserMenu(ActionMenu.ADMIN, ActionMenu.HR, ActionMenu.MITARBEITER);
+            var actionResult = EingabeHelper.menuEinzelEingabe("Wählen Sie eine Aktion", menu, null);
+
+            switch (actionResult) {
+                case ANZEIGEN -> {
+                    mitarbeiterAnzeigeView.setAusgewaehlterMitarbeiter(ausgewaehlterMitarbeiter);
+                    mitarbeiterAnzeigeView.exec();
+                }
+                case BEARBEITEN -> {
+                    mitarbeiterBearbeiteView.setAusgewaehlterMitarbeiter(ausgewaehlterMitarbeiter);
+                    mitarbeiterBearbeiteView.exec();
+                }
+                case LOESCHEN -> mitarbeiterService.loescheMitarbeiter(ausgewaehlterMitarbeiter);
+            }
+        }
     }
 }

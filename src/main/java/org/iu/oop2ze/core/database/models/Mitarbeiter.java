@@ -1,12 +1,12 @@
 package org.iu.oop2ze.core.database.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.iu.oop2ze.core.database.models.abstracts.BaseEntity;
-
-import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.iu.oop2ze.core.database.models.abstracts.BaseEntity;
 
 @Getter
 @Setter

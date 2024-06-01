@@ -4,5 +4,4 @@ public enum ActionMenuOptions {
     ANZEIGEN,
     BEARBEITEN,
     LOESCHEN,
-    ERSTELLEN,
 }

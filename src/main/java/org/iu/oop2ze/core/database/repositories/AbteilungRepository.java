@@ -5,5 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface AbteilungRepository extends CrudRepository<Abteilung, Long> {
     Abteilung findByName(final String name);
+
     Abteilung findByIsHr(final boolean isHr);
 }

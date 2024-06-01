@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import org.iu.oop2ze.core.database.models.abstracts.BaseEntity;
 import org.iu.oop2ze.core.database.models.abstracts.enums.StatusType;
 

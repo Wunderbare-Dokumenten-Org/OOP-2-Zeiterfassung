@@ -8,8 +8,12 @@ import java.util.List;
 
 public interface MitarbeiterRepository extends CrudRepository<Mitarbeiter, Long> {
     Mitarbeiter findByPersonalnummer(final String personalnummer);
+
     Mitarbeiter findByIsSysAdmin(final Boolean isSysAdmin);
+
     Mitarbeiter findByEmailAndPasswort(final String email, final String passwort);
+
     Mitarbeiter findByEmail(final String email);
+
     List<Mitarbeiter> findAllByAbteilung(final Abteilung abteilung);
 }

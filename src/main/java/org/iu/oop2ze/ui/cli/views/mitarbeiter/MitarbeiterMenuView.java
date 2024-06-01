@@ -11,7 +11,7 @@ public class MitarbeiterMenuView extends CliComponent {
     private MitarbeiterAuflistenView mitarbeiterAuflistenView;
 
     @LazyInject
-    private MitarbeiterView mitarbeiterView;
+    private MitarbeiterErstellenView mitarbeiterView;
 
     private Boolean running = true;
 

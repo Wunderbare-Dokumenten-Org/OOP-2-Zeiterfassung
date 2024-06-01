@@ -27,8 +27,8 @@ public class AntragService implements IAntragService {
      * Erstellt einen Antrag
      *
      * @param stellenderMitarbeiter Der Mitarbeiter, welcher den Antrag stellt
-     * @param type Der Type des Antrags
-     * @param datum Das Datum, für wann der Antrag gedacht ist
+     * @param type                  Der Type des Antrags
+     * @param datum                 Das Datum, für wann der Antrag gedacht ist
      * @return Den erstellten Antrag
      * @author Julius Beier
      */
@@ -48,8 +48,8 @@ public class AntragService implements IAntragService {
      * Bearbeitet einen Antrag
      *
      * @param antrag Der zu bearbeitende Antrag
-     * @param type Der Type des Antrags
-     * @param datum Das Datum des Antrags
+     * @param type   Der Type des Antrags
+     * @param datum  Das Datum des Antrags
      * @return Den bearbeiteten Antrag
      * @author Julius Beier
      */

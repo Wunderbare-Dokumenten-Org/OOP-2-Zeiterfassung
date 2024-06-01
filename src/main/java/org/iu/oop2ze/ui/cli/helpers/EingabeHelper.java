@@ -27,7 +27,9 @@ public class EingabeHelper {
         propmt.append("%s\n".formatted(title));
 
         if (menuComponent == null)
-            menuComponent = (T m) -> {return m.toString();};
+            menuComponent = (T m) -> {
+                return m.toString();
+            };
 
         int i = 1;
         for (Iterator<T> iter = options.iterator(); iter.hasNext(); i++) {
