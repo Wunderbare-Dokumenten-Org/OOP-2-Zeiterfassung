@@ -1,16 +1,17 @@
 package org.iu.oop2ze.ui.cli.views.mitarbeiter;
 
 import org.iu.oop2ze.ui.cli.abstracts.CliComponent;
+import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 import org.iu.oop2ze.ui.cli.helpers.MenuHelper;
 import org.iu.oop2ze.ui.cli.menues.mitarbeiter.MitarbeiterMenu;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 
 public class MitarbeiterMenuView extends CliComponent {
-    @Lazy
-    @Autowired
+    @LazyInject
     private MitarbeiterAuflistenView mitarbeiterAuflistenView;
+
+    @LazyInject
+    private MitarbeiterView mitarbeiterView;
 
     private Boolean running = true;
 
@@ -18,15 +19,11 @@ public class MitarbeiterMenuView extends CliComponent {
     public void exec() {
         do {
             var menu = MenuHelper.gibUserMenu(MitarbeiterMenu.ADMIN, MitarbeiterMenu.HR, MitarbeiterMenu.MITARBEITER);
-            var result = EingabeHelper.menuEinzelEingabe("Wählen Sie eine Aktion aus", menu);
+            var result = EingabeHelper.menuEinzelEingabe("Wählen Sie eine Aktion aus", menu, null);
 
             switch (result) {
                 case AUFLISTEN -> mitarbeiterAuflistenView.exec();
-                case ERSTELLEN -> {
-                }
-                case ANZEIGEN, BEARBEITEN, LOESCHEN -> {
-
-                }
+                case ERSTELLEN -> mitarbeiterView.exec();
                 case ZURUECK -> running = false;
                 case null -> running = false;
                 default -> throw new IllegalStateException();
