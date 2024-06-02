@@ -30,7 +30,7 @@ public class MitarbeiterErstellenView extends CliComponent {
         String vorname = null;
         String personalnummer = null;
         Abteilung abteilung = null;
-        Abteilung lastAbteilung = null;
+        Abteilung letzteAbteilung = null;
 
         do {
             EingabeHelper.clearConsole();
@@ -46,14 +46,10 @@ public class MitarbeiterErstellenView extends CliComponent {
             var personalnummerPrompt = PromptHelper.erstellInputPrompt("Personalnummer des Mitarbeiters%s: ", personalnummer == null ? "" : personalnummer);
             personalnummer = EingabeHelper.stringEingabe(personalnummerPrompt, personalnummer);
 
-            var abteilungPrompt = PromptHelper.erstellInputPrompt("Abteilung des Mitarbeiters%s", abteilung == null ? "" : abteilung.getName());
-            abteilung = EingabeHelper.menuEinzelEingabe(abteilungPrompt, abteilungService.findeAlle(), Abteilung::getName);
+            abteilung = MitarbeiterHelper.getAbteilung(abteilung, letzteAbteilung, abteilungService);
 
             if (abteilung != null)
-                lastAbteilung = abteilung;
-
-            if (abteilung == null && lastAbteilung != null)
-                abteilung = lastAbteilung;
+                letzteAbteilung = abteilung;
 
             neuerMitarbeiter = mitarbeiterService.erstelleMitarbeiter(name, vorname, personalnummer, abteilung);
             if (neuerMitarbeiter == null)
