@@ -1,5 +1,6 @@
 package org.iu.oop2ze.ui.cli.views.zeitstempel;
 
+import lombok.Getter;
 import lombok.Setter;
 import org.iu.oop2ze.core.database.models.Antrag;
 import org.iu.oop2ze.core.services.ZeitstempelService;
@@ -21,12 +22,15 @@ import java.util.List;
  * @author Leon Dieringer
  * @see CliComponent
  */
+
+@Setter
+@Getter
 public class ZeitstempelAuflistenView extends CliComponent {
     @LazyInject
     private IZeitstempelService zeitstempelService;
 
     @LazyInject
-    private ZeitstempelAnzeigenView zeitstempelAnzeigenView;
+    private ZeitstempelAnzeigenView zeitstempelAnzeigeView;
 
     @LazyInject
     private ZeitstempelBearbeitenView zeitstempelBearbeitenView;
@@ -39,7 +43,7 @@ private Boolean zeitspanne;
 
     @Override
     public void exec() {
-        if (zeitspanne = null)
+        if (zeitspanne == null)
             throw new IllegalStateException();
 
         List<Antrag> zeitstempel;
@@ -48,23 +52,30 @@ private Boolean zeitspanne;
         Date end;
 
         if (zeitspanne) {
-
+            begin = EingabeHelper.dateEingabe("Beginn der Zeitspanne");
+            end = EingabeHelper.dateEingabe("Ende der Zeitspanne");
         }
 
         var user = UserHelper.getAngemeldeterMitarbeiter();
 
         if (user.getAbteilung().getIsHr()) {
-            zeitstempel = zeitstempelService.findeAlleZeitstempel(user.getZeitstempel());
+            if (zeitspanne)
+                zeitstempel = zeitstempelService.findeAlleZeitstempelFuerBearbeiterZwischen(user, begin, end);
+            else
+                zeitstempel = zeitstempelService.findeAlleZeitstempelFuerBearbeiter(user);
         } else {
-            throw new IllegalStateException("Normale Mitarbeiter haben keinen Zugriff auf die Mitarbeiter Verwaltung");
+            if (zeitspanne)
+            zeitstempel = zeitstempelService.findeAlleZeitstempelFuerStellerZwischen(user, begin, end);
+        else
+            zeitstempel = zeitstempelService.findeAlleZeitstempelFuerSteller(user);
         }
 
-        var ausgewaehlterMitarbeiter = EingabeHelper.menuEinzelEingabe("Wählen Sie einen Mitarbeiter aus", mitarbeiter, (Mitarbeiter m) -> {
-            return "%s, %s".formatted(m.getName(), m.getVorname());
+        var ausgewaehlterZeitstempel = EingabeHelper.menuEinzelEingabe("Wählen Sie einen Zeitstempelantrag aus", zeitstempel, (Antrag a) -> {
+            return "%s, %s".formatted(a.getType(), a.getStellenderMitarbeiter().getName());
         });
 
-        if (ausgewaehlterMitarbeiter != null) {
-            var menu = MenuHelper.gibUserMenu(mitarbeiterAuflistenMenu);
+        if (ausgewaehlterZeitstempel != null) {
+            var menu = MenuHelper.gibUserMenu(zeitstempelAuflistenMenu);
             var actionResult = EingabeHelper.menuEinzelEingabe("Wählen Sie eine Aktion", menu, null);
 
             if (actionResult == null)
@@ -76,10 +87,9 @@ private Boolean zeitspanne;
                     zeitstempelAnzeigeView.exec();
                 }
                 case BEARBEITEN -> {
-                    zeitstempelBearbeiteView.setAusgewaehlterZeitstempel(ausgewaehlterZeitstempel);
-                    zeitstempelBearbeiteView.exec();
+                    zeitstempelBearbeitenView.setAusgewaehlterZeitstempel(ausgewaehlterZeitstempel);
+                    zeitstempelBearbeitenView.exec();
                 }
-                case LOESCHEN -> ZeitstempelService.loescheZeitstempel(ausgewaehlterZeistempel);
             }
         }
     }

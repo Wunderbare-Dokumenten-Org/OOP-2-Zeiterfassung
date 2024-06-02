@@ -6,6 +6,11 @@ import org.iu.oop2ze.ui.cli.menues.abstracts.BaseMenu;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Klasse, welche die Menüs für die ZeitstempelAuflistenView definiert
+ *
+ * @author Leon Dieringer
+ */
 public class ZeitstempelAuflistenMenu extends BaseMenu<ActionMenuOptions> {
     public ZeitstempelAuflistenMenu() {
         this.mitarbeiter = Arrays.asList(
