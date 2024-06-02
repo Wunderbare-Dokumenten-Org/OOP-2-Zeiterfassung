@@ -61,6 +61,9 @@ public class AbteilungErstellenView extends CliComponent {
             if (leitenderMitarbeiter != null)
                 lastLeitenderMitarbeiter = leitenderMitarbeiter;
 
+            if (leitenderMitarbeiter == null)
+                continue;
+
             neueAbteilung = abteilungService.erstelleAbteilung(name, isHr, leitenderMitarbeiter);
             if (neueAbteilung == null)
                 EingabeHelper.stringEingabe("<ENTER> zum Fortfahren", "<ENTER>");
