@@ -3,11 +3,12 @@ package org.iu.oop2ze.core.services;
 import lombok.extern.slf4j.Slf4j;
 import org.iu.oop2ze.core.database.models.Abteilung;
 import org.iu.oop2ze.core.database.models.Mitarbeiter;
+import org.iu.oop2ze.core.database.repositories.AbteilungRepository;
 import org.iu.oop2ze.core.database.repositories.MitarbeiterRepository;
 import org.iu.oop2ze.core.helpers.EnviromentHelper;
 import org.iu.oop2ze.core.services.interfaces.IMitarbeiterService;
+import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,8 +22,11 @@ import java.util.List;
 @Service
 @Slf4j
 public class MitarbeiterService implements IMitarbeiterService {
-    @Autowired
+    @LazyInject
     private MitarbeiterRepository mitarbeiterRepository;
+
+    @LazyInject
+    private AbteilungRepository abteilungRepository;
 
     public Mitarbeiter erstelleMitarbeiter(
             @NotNull final String name,
@@ -115,5 +119,23 @@ public class MitarbeiterService implements IMitarbeiterService {
 
     public List<Mitarbeiter> findeAlleMitarbeiterFuerAbteilung(@NotNull final Abteilung abteilung) {
         return new ArrayList<>(mitarbeiterRepository.findAllByAbteilung(abteilung));
+    }
+
+    @Override
+    public List<Mitarbeiter> findeAlleFreienHRMitarbeiter() {
+        List<Mitarbeiter> hrMitarbeiter = new ArrayList<>();
+
+        var hrAbteilungen = abteilungRepository.findByIsHr(true);
+
+        for (Abteilung abteilung : hrAbteilungen) {
+            hrMitarbeiter.addAll(mitarbeiterRepository.findAllByAbteilung(abteilung));
+        }
+
+        hrMitarbeiter
+                .stream()
+                .filter(mitarbeiter -> abteilungRepository.findByLeitenderMitarbeiter(mitarbeiter) != null)
+                .forEach(hrMitarbeiter::remove);
+
+        return hrMitarbeiter;
     }
 }

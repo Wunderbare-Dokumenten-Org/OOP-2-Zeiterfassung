@@ -1,7 +1,10 @@
 package org.iu.oop2ze.core.database.repositories;
 
 import org.iu.oop2ze.core.database.models.Abteilung;
+import org.iu.oop2ze.core.database.models.Mitarbeiter;
 import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
 
 /**
  * Interface, um die Datenbank für Abteilungen abzufragen (wird automatisch implementiert)
@@ -11,5 +14,7 @@ import org.springframework.data.repository.CrudRepository;
 public interface AbteilungRepository extends CrudRepository<Abteilung, Long> {
     Abteilung findByName(final String name);
 
-    Abteilung findByIsHr(final boolean isHr);
+    List<Abteilung> findByIsHr(final boolean isHr);
+
+    Abteilung findByLeitenderMitarbeiter(final Mitarbeiter leitenderMitarbeiter);
 }

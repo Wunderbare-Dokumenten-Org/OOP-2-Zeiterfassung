@@ -24,12 +24,9 @@ public class AbteilungHelper {
                 leitenderMitarbeiter == null ? "" : leitenderMitarbeiter.getName());
 
         leitenderMitarbeiter = EingabeHelper.menuEinzelEingabe(leitenderMitarbeiterPrompt,
-                mitarbeiterService.findeAlleMitarbeiter(), (Mitarbeiter m) -> {
+                mitarbeiterService.findeAlleFreienHRMitarbeiter(), (Mitarbeiter m) -> {
                     return "%s, %s".formatted(m.getName(), m.getVorname());
                 });
-
-        if (leitenderMitarbeiter != null)
-            lastLeitenderMitarbeiter = leitenderMitarbeiter;
 
         if (leitenderMitarbeiter == null && lastLeitenderMitarbeiter != null)
             leitenderMitarbeiter = lastLeitenderMitarbeiter;

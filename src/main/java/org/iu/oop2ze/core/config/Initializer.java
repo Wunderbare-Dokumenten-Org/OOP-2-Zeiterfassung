@@ -31,8 +31,8 @@ public class Initializer {
             sysAdmin = new Mitarbeiter("Admin", "Admin", "0", true, null, "admin@admin.de", "12345678");
             mitarbeiterRepository.save(sysAdmin);
         }
-        Abteilung abteilung = abteilungRepository.findByIsHr(true);
-        if (abteilung == null) {
+        var abteilungen = abteilungRepository.findByIsHr(true);
+        if (abteilungen.isEmpty()) {
             Abteilung defaultHr = new Abteilung("Human Resources", true, sysAdmin);
             abteilungRepository.save(defaultHr);
         }
