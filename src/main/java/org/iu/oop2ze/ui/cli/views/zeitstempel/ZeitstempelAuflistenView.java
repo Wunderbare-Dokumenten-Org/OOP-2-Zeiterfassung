@@ -3,14 +3,13 @@ package org.iu.oop2ze.ui.cli.views.zeitstempel;
 import lombok.Getter;
 import lombok.Setter;
 import org.iu.oop2ze.core.database.models.Antrag;
-import org.iu.oop2ze.core.services.ZeitstempelService;
 import org.iu.oop2ze.core.services.interfaces.IZeitstempelService;
-import org.iu.oop2ze.ui.cli.views.zeitstempel.ZeitstempelAnzeigenView;
 import org.iu.oop2ze.ui.cli.abstracts.CliComponent;
 import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 import org.iu.oop2ze.ui.cli.helpers.MenuHelper;
 import org.iu.oop2ze.ui.cli.helpers.UserHelper;
+import org.iu.oop2ze.ui.cli.menues.zeitstempel.ZeitstempelAuflistenMenu;
 
 import java.util.Date;
 import java.util.List;
@@ -23,8 +22,6 @@ import java.util.List;
  * @see CliComponent
  */
 
-@Setter
-@Getter
 public class ZeitstempelAuflistenView extends CliComponent {
     @LazyInject
     private IZeitstempelService zeitstempelService;
@@ -38,8 +35,8 @@ public class ZeitstempelAuflistenView extends CliComponent {
     @LazyInject
     private ZeitstempelAuflistenMenu zeitstempelAuflistenMenu;
 
-@Setter
-private Boolean zeitspanne;
+    @Setter
+    private Boolean zeitspanne;
 
     @Override
     public void exec() {
@@ -48,8 +45,8 @@ private Boolean zeitspanne;
 
         List<Antrag> zeitstempel;
 
-        Date begin;
-        Date end;
+        Date begin = new Date(1);
+        Date end = new Date();
 
         if (zeitspanne) {
             begin = EingabeHelper.dateEingabe("Beginn der Zeitspanne");
@@ -65,9 +62,9 @@ private Boolean zeitspanne;
                 zeitstempel = zeitstempelService.findeAlleZeitstempelFuerBearbeiter(user);
         } else {
             if (zeitspanne)
-            zeitstempel = zeitstempelService.findeAlleZeitstempelFuerStellerZwischen(user, begin, end);
-        else
-            zeitstempel = zeitstempelService.findeAlleZeitstempelFuerSteller(user);
+                zeitstempel = zeitstempelService.findeAlleZeitstempelFuerStellerZwischen(user, begin, end);
+            else
+                zeitstempel = zeitstempelService.findeAlleZeitstempelFuerSteller(user);
         }
 
         var ausgewaehlterZeitstempel = EingabeHelper.menuEinzelEingabe("Wählen Sie einen Zeitstempelantrag aus", zeitstempel, (Antrag a) -> {
@@ -83,7 +80,7 @@ private Boolean zeitspanne;
 
             switch (actionResult) {
                 case ANZEIGEN -> {
-                    zeitstempelAnzeigeView.setAusgewaehlterZeitstempel(ausgewaehlterZeitstempel);
+                    zeitstempelAnzeigeView.setAusgewaehlterZeitstempelAntrag(ausgewaehlterZeitstempel);
                     zeitstempelAnzeigeView.exec();
                 }
                 case BEARBEITEN -> {

@@ -7,10 +7,13 @@ import org.iu.oop2ze.core.services.interfaces.IMitarbeiterService;
 import org.iu.oop2ze.ui.cli.abstracts.CliComponent;
 import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
+import org.iu.oop2ze.ui.cli.helpers.MenuHelper;
 import org.iu.oop2ze.ui.cli.helpers.PromptHelper;
 import org.iu.oop2ze.ui.cli.helpers.UserHelper;
 
 import java.util.Arrays;
+
+import static org.iu.oop2ze.ui.cli.helpers.MenuHelper.boolToHumanReadable;
 
 /**
  * Klasse, welche eine Abteilung erstellt
@@ -24,10 +27,6 @@ public class AbteilungErstellenView extends CliComponent {
 
     @LazyInject
     private IMitarbeiterService mitarbeiterService;
-
-    private String boolToHumanReadable(boolean bool) {
-        return bool ? "Ja" : "Nein";
-    }
 
     @Override
     public void exec() {
@@ -47,7 +46,7 @@ public class AbteilungErstellenView extends CliComponent {
             name = EingabeHelper.stringEingabe(namePrompt, name);
 
             var isHrPrompt = PromptHelper.erstellInputPrompt("Human Resource-fähig%s: ", boolToHumanReadable(isHr));
-            isHr = EingabeHelper.menuEinzelEingabe(isHrPrompt, Arrays.asList(true, false), this::boolToHumanReadable);
+            isHr = EingabeHelper.menuEinzelEingabe(isHrPrompt, Arrays.asList(true, false), MenuHelper::boolToHumanReadable);
 
             if (isHr == null)
                 isHr = false;

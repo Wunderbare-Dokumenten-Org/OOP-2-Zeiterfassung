@@ -3,6 +3,9 @@ package org.iu.oop2ze.ui.cli.helpers;
 import org.iu.oop2ze.ui.cli.abstracts.MenuComponent;
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -106,18 +109,21 @@ public class EingabeHelper {
         return result;
     }
 
-    public static Date dateEingabe (final String prompt) {
-        Date result;
+    public static Date dateEingabe(final String prompt) {
+        Date result = null;
 
         do {
             System.out.print(prompt);
 
-            var tag = stringEingabe("Tag :", null);
-            var monat = stringEingabe("Monat :", null);
-            var jahr = stringEingabe("Jahr :", null);
+            var tag = stringEingabe("Tag: ", null);
+            var monat = stringEingabe("Monat: ", null);
+            var jahr = stringEingabe("Jahr: ", null);
 
             try {
-                
+                DateFormat formatter = new SimpleDateFormat("dd MM yyyy");
+                result = formatter.parse("%s %s %s".formatted(tag, monat, jahr));
+            } catch (ParseException e) {
+                continue;
             }
         } while (result == null);
 

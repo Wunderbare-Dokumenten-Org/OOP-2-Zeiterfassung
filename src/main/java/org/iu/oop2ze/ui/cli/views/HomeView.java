@@ -8,6 +8,7 @@ import org.iu.oop2ze.ui.cli.helpers.UserHelper;
 import org.iu.oop2ze.ui.cli.menues.home.HomeMenu;
 import org.iu.oop2ze.ui.cli.views.abteilung.AbteilungMenuView;
 import org.iu.oop2ze.ui.cli.views.mitarbeiter.MitarbeiterMenuView;
+import org.iu.oop2ze.ui.cli.views.zeitstempel.ZeitstempelMenuView;
 
 /**
  * Klasse, welche das Home Menü anzeigt
@@ -24,6 +25,9 @@ public class HomeView extends CliComponent {
 
     @LazyInject
     private AbteilungMenuView abteilungMenuView;
+
+    @LazyInject
+    private ZeitstempelMenuView zeitstempelMenuView;
 
     @LazyInject
     private HomeMenu homeMenu;
@@ -50,8 +54,9 @@ public class HomeView extends CliComponent {
             var result = EingabeHelper.menuEinzelEingabe("Willkommen beim Zeiterfassungssystem", menu, null);
 
             switch (result) {
-                case ANTRAEGE, ARBEITSZEITEN -> {
+                case ANTRAEGE -> {
                 }
+                case ZEITSTEMPELN -> zeitstempelMenuView.exec();
                 case ABTEILUNGEN -> abteilungMenuView.exec();
                 case MITARBEITER -> mitarbeiterMenuView.exec();
                 case LOGOUT -> UserHelper.logout();

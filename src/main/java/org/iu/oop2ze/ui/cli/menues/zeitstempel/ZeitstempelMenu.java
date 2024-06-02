@@ -13,18 +13,18 @@ import java.util.Arrays;
  * @author Leon Dieringer
  */
 
-public class ZeitstempelMenu extends BaseMenu<AntragViewMenuOptions> {
+public class ZeitstempelMenu extends BaseMenu<MenuViewMenuOptions> {
     public ZeitstempelMenu() {
         this.mitarbeiter = Arrays.asList(
-                AntragViewMenuOptions.AUFLISTEN,
-                AntragViewMenuOptions.AUFLISTEN_ZEITSPANNE,
-                AntragViewMenuOptions.ERSTELLEN,
-                AntragViewMenuOptions.ZURUECK
+                MenuViewMenuOptions.AUFLISTEN,
+                MenuViewMenuOptions.AUFLISTEN_ZEITSPANNE,
+                MenuViewMenuOptions.ERSTELLEN,
+                MenuViewMenuOptions.ZURUECK
         );
         this.hr = Arrays.asList(
-                AntragViewMenuOptions.AUFLISTEN,
-                AntragViewMenuOptions.AUFLISTEN_ZEITSPANNE,
-                AntragViewMenuOptions.ZURUECK
+                MenuViewMenuOptions.AUFLISTEN,
+                MenuViewMenuOptions.AUFLISTEN_ZEITSPANNE,
+                MenuViewMenuOptions.ZURUECK
         );
         this.admin = new ArrayList<>();
     }

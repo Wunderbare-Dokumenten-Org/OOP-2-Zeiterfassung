@@ -7,6 +7,7 @@ package org.iu.oop2ze.ui.cli.menues.abstracts;
  */
 public enum MenuViewMenuOptions {
     AUFLISTEN,
+    AUFLISTEN_ZEITSPANNE,
     ERSTELLEN,
     ZURUECK,
 }

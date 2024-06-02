@@ -60,10 +60,17 @@ public class MenuHelper {
 
             switch (result) {
                 case AUFLISTEN -> auflistenView.exec();
+                case AUFLISTEN_ZEITSPANNE -> {
+                }
                 case ERSTELLEN -> erstellenView.exec();
                 case ZURUECK -> running = false;
                 case null -> running = false;
             }
         } while (running);
     }
+
+    public static String boolToHumanReadable(boolean bool) {
+        return bool ? "Ja" : "Nein";
+    }
+
 }
