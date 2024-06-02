@@ -1,7 +1,7 @@
 package org.iu.oop2ze.core.database.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +21,6 @@ import org.iu.oop2ze.core.database.models.abstracts.BaseEntity;
 public class Abteilung extends BaseEntity {
     private String name;
     private Boolean isHr;
-    @OneToOne
+    @ManyToOne
     private Mitarbeiter leitenderMitarbeiter;
 }
