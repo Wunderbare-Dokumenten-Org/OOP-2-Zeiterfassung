@@ -17,12 +17,15 @@ public class AbteilungAnzeigenView extends CliComponent {
         EingabeHelper.clearConsole();
 
         var leitenderMitarbeiter = ausgewaehlteAbteilung.getLeitenderMitarbeiter();
+        var leitenderMitarbeiterString =
+                "%s".formatted(leitenderMitarbeiter == null ? "Kein Leitender Mitarbeiter" :
+                        "%s, %s".formatted(leitenderMitarbeiter.getName(), leitenderMitarbeiter.getVorname()));
 
         var abteilungAnzeige = new StringBuilder()
                 .append("Abteilung - Anzeige\n")
                 .append("\tName: %s\n".formatted(ausgewaehlteAbteilung.getName()))
                 .append("\tIst HR: %s\n".formatted(ausgewaehlteAbteilung.getIsHr()))
-                .append("\tLeitender Mitarbeiter: %s, %s\n".formatted(leitenderMitarbeiter.getName(), leitenderMitarbeiter.getVorname()))
+                .append("\tLeitender Mitarbeiter: %s\n".formatted(leitenderMitarbeiterString))
                 .append("\tErstellt: %s\n".formatted(ausgewaehlteAbteilung.getErstellt()))
                 .append("\tBearbeitet: %s\n".formatted(ausgewaehlteAbteilung.getBearbeitet()));
 
