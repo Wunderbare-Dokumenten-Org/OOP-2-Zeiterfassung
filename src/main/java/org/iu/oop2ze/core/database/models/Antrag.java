@@ -1,5 +1,6 @@
 package org.iu.oop2ze.core.database.models;
 
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import java.util.Date;
@@ -28,4 +29,6 @@ public class Antrag extends BaseEntity {
     private String kommentar;
     @ManyToOne
     private Mitarbeiter bearbeitenderMitarbeiter;
+    @Embedded
+    private Zeitstempel zeitstempel;
 }

@@ -3,6 +3,7 @@ package org.iu.oop2ze.core.services;
 import lombok.extern.slf4j.Slf4j;
 import org.iu.oop2ze.core.database.models.Antrag;
 import org.iu.oop2ze.core.database.models.Mitarbeiter;
+import org.iu.oop2ze.core.database.models.Zeitstempel;
 import org.iu.oop2ze.core.database.models.abstracts.enums.AntragType;
 import org.iu.oop2ze.core.database.models.abstracts.enums.StatusType;
 import org.iu.oop2ze.core.database.repositories.AntragRepository;
@@ -20,7 +21,7 @@ import java.util.Date;
  */
 @Service
 @Slf4j
-public class AntragService implements IAntragService {
+public abstract class AntragService implements IAntragService {
     @Autowired
     private AntragRepository antragRepository;
 
@@ -41,10 +42,11 @@ public class AntragService implements IAntragService {
             @NotNull final String titel,
             @NotNull final StatusType status,
             final String kommentar,
-            @NotNull final Mitarbeiter bearbeitenderMitarbeiter
+            @NotNull final Mitarbeiter bearbeitenderMitarbeiter,
+            @NotNull final Zeitstempel zeitstempel
     ) {
-        var antrag = new Antrag(stellenderMitarbeiter, type, datum, titel, status, kommentar, bearbeitenderMitarbeiter);
-
+        var antrag = new Antrag(stellenderMitarbeiter,type,datum,titel,status,kommentar,bearbeitenderMitarbeiter,zeitstempel);
+        antrag.setZeitstempel(zeitstempel);
         antragRepository.save(antrag);
         return antrag;
     }
@@ -99,6 +101,4 @@ public class AntragService implements IAntragService {
     public void loescheAntrag(@NotNull final Antrag antrag) {
         antragRepository.delete(antrag);
     }
-
-
 };
