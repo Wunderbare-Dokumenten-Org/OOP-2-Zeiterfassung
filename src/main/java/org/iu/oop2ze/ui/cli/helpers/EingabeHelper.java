@@ -63,7 +63,7 @@ public class EingabeHelper {
 
         var menu = prompt.toString();
 
-        int result;
+        int result = 0;
         do {
             clearConsole();
             System.out.print(menu);
@@ -73,7 +73,12 @@ public class EingabeHelper {
                 return null;
             }
 
-            result = Integer.parseInt(tmp);
+            try {
+                result = Integer.parseInt(tmp);
+            } catch (Exception e) {
+                System.out.println("Fehler bei der Eingabe");
+                EingabeHelper.stringEingabe("<ENTER> zum Fortfahren", "<ENTER>");
+            }
         } while (result < 1 || result > options.size());
 
         return options.get(result - 1);
