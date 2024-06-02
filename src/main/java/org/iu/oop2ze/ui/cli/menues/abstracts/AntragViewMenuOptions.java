@@ -1,13 +1,14 @@
 package org.iu.oop2ze.ui.cli.menues.abstracts;
 
 /**
- * Enum, welcher die MenüView Menüoptionen beschreibt
+ * Enum, welcher die MenüView Antrag optionen beschreibt
  *
- * @author Julius Beier
+ * @author Leon Dieringer
  */
-public enum MenuViewMenuOptions {
+public enum AntragViewMenuOptions {
     AUFLISTEN,
     AUFLISTEN_ZEITSPANNE,
     ERSTELLEN,
     ZURUECK,
+
 }

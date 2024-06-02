@@ -36,7 +36,7 @@ public class ZeitstempelService implements IZeitstempelService {
 
         var bearbeiter = stellenderMitarbeiter.getAbteilung().getLeitenderMitarbeiter();
 
-        var zeitstempel = new Antrag(stellenderMitarbeiter, AntragType.ARBEIT_BEGIN,
+        var zeitstempel = new Antrag(stellenderMitarbeiter, type,
                 new Date(), "Arbeitszeit Beginn", StatusType.AUSSTEHEND, null, false, bearbeiter);
 
         antragRepository.save(zeitstempel);
@@ -54,8 +54,9 @@ public class ZeitstempelService implements IZeitstempelService {
     }
 
     @Override
-    public Antrag bearbeiteAntrag(@NotNull Antrag antrag, @NotNull final StatusType status, final Boolean genehmigt) {
-        antrag.setStatus(status);
+    public Antrag bearbeiteAntrag(@NotNull Antrag antrag, final StatusType status, final Boolean genehmigt) {
+        if (status != null)
+            antrag.setStatus(status);
 
         if (genehmigt != null)
             antrag.setGenehmigt(genehmigt);

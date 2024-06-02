@@ -22,7 +22,7 @@ public class HomeMenu extends BaseMenu<HomeMenuOptions> {
         );
 
         this.hr = Arrays.asList(
-                HomeMenuOptions.ARBEITSZEITEN,
+                HomeMenuOptions.ZEITSTEMPELN,
                 HomeMenuOptions.ANTRAEGE,
                 HomeMenuOptions.ABTEILUNGEN,
                 HomeMenuOptions.MITARBEITER,
@@ -31,7 +31,7 @@ public class HomeMenu extends BaseMenu<HomeMenuOptions> {
         );
 
         this.mitarbeiter = Arrays.asList(
-                HomeMenuOptions.ARBEITSZEITEN,
+                HomeMenuOptions.ZEITSTEMPELN,
                 HomeMenuOptions.ANTRAEGE,
                 HomeMenuOptions.LOGOUT,
                 HomeMenuOptions.BEENDEN

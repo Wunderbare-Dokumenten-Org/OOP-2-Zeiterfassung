@@ -4,6 +4,7 @@ import lombok.Setter;
 import org.iu.oop2ze.core.database.models.Abteilung;
 import org.iu.oop2ze.ui.cli.abstracts.CliComponent;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
+import org.iu.oop2ze.ui.cli.helpers.MenuHelper;
 
 /**
  * Klasse, welche Abteilungen Anzeigt
@@ -30,7 +31,7 @@ public class AbteilungAnzeigenView extends CliComponent {
         var abteilungAnzeige = new StringBuilder()
                 .append("Abteilung - Anzeige\n")
                 .append("\tName: %s\n".formatted(ausgewaehlteAbteilung.getName()))
-                .append("\tIst HR: %s\n".formatted(ausgewaehlteAbteilung.getIsHr()))
+                .append("\tIst HR: %s\n".formatted(MenuHelper.boolToHumanReadable(ausgewaehlteAbteilung.getIsHr())))
                 .append("\tLeitender Mitarbeiter: %s\n".formatted(leitenderMitarbeiterString))
                 .append("\tErstellt: %s\n".formatted(ausgewaehlteAbteilung.getErstellt()))
                 .append("\tBearbeitet: %s\n".formatted(ausgewaehlteAbteilung.getBearbeitet()));

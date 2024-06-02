@@ -12,7 +12,7 @@ public enum HomeMenuOptions {
     ABTEILUNGEN,
     LOGOUT,
     BEENDEN,
-    ARBEITSZEITEN,
+    ZEITSTEMPELN,
     ANTRAEGE,
     MITARBEITER,
 }
