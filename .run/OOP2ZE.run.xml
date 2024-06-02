@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="OOP2ZE" type="Application" factoryName="Application">
+    <envs>
+      <env name="OOP2ZE_ENCRYPTION_SECRET" value="S/n1xzAWN/GsraLgV5bnRtvEex8mnhagOGv/l8cXkz5ArpZfs9DPgEZtdb5RhhOL" />
+      <env name="OOP2ZE_FIRMA" value="TestFirma" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="org.iu.oop2ze.Oop2ZeApplication" />
+    <module name="OOP2-ZE" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
