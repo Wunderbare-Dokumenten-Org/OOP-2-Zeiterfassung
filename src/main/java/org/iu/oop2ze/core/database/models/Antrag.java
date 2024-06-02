@@ -37,6 +37,8 @@ public class Antrag extends BaseEntity {
     private StatusType status;
     @Convert(converter = Encrypter.class)
     private String kommentar;
+    @Convert(converter = Encrypter.class)
+    private Boolean genehmigt;
     @ManyToOne
     private Mitarbeiter bearbeitenderMitarbeiter;
 }

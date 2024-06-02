@@ -8,6 +8,7 @@ import org.iu.oop2ze.ui.cli.abstracts.CliComponent;
 import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 import org.iu.oop2ze.ui.cli.helpers.PromptHelper;
+import org.iu.oop2ze.ui.cli.helpers.UserHelper;
 
 import java.util.Arrays;
 
@@ -51,10 +52,17 @@ public class AbteilungErstellenView extends CliComponent {
             if (isHr == null)
                 isHr = false;
 
-            leitenderMitarbeiter = AbteilungHelper.gibLeitenderMitarbeiter(leitenderMitarbeiter, lastLeitenderMitarbeiter, mitarbeiterService);
+            if (!isHr)
+                leitenderMitarbeiter = AbteilungHelper.gibLeitenderMitarbeiter(leitenderMitarbeiter, lastLeitenderMitarbeiter, mitarbeiterService);
+            else
+                // Kann in diesem Falle nur der Systemadministrator sein
+                leitenderMitarbeiter = UserHelper.getAngemeldeterMitarbeiter();
 
             if (leitenderMitarbeiter != null)
                 lastLeitenderMitarbeiter = leitenderMitarbeiter;
+
+            if (leitenderMitarbeiter == null)
+                continue;
 
             neueAbteilung = abteilungService.erstelleAbteilung(name, isHr, leitenderMitarbeiter);
             if (neueAbteilung == null)

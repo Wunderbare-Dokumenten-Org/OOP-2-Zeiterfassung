@@ -70,4 +70,12 @@ public interface IMitarbeiterService {
      * @author Julius Beier
      */
     List<Mitarbeiter> findeAlleMitarbeiterFuerAbteilung(final Abteilung abteilung);
+
+    /**
+     * Gibt alle verfügbaren HR Mitarbeiter zurück
+     *
+     * @return alle verfügbaren HR Mitarbeiter
+     * @author Julius Beier
+     */
+    List<Mitarbeiter> findeAlleFreienHRMitarbeiter();
 }

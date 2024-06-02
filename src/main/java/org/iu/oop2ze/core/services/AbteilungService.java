@@ -24,7 +24,7 @@ public class AbteilungService implements IAbteilungService {
     private AbteilungRepository abteilungRepository;
 
     @Override
-    public Abteilung erstelleAbteilung(@NotNull final String name, @NotNull final Boolean isHr, final Mitarbeiter leitenderMitarbeiter) {
+    public Abteilung erstelleAbteilung(@NotNull final String name, @NotNull final Boolean isHr, @NotNull final Mitarbeiter leitenderMitarbeiter) {
         if (name.isBlank()) {
             throw new IllegalArgumentException();
         }

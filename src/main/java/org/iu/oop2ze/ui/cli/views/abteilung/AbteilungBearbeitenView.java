@@ -45,10 +45,12 @@ public class AbteilungBearbeitenView extends CliComponent {
             var namePrompt = PromptHelper.erstellInputPrompt("Name der Abteilung%s: ", name);
             name = EingabeHelper.stringEingabe(namePrompt, name);
 
-            leitenderMitarbeiter = AbteilungHelper.gibLeitenderMitarbeiter(leitenderMitarbeiter, lastLeitenderMitarbeiter, mitarbeiterService);
+            if (!ausgewaehlteAbteilung.getIsHr()) {
+                leitenderMitarbeiter = AbteilungHelper.gibLeitenderMitarbeiter(leitenderMitarbeiter, lastLeitenderMitarbeiter, mitarbeiterService);
 
-            if (leitenderMitarbeiter != null)
-                lastLeitenderMitarbeiter = leitenderMitarbeiter;
+                if (leitenderMitarbeiter != null)
+                    lastLeitenderMitarbeiter = leitenderMitarbeiter;
+            }
 
             bearbeiteteAbteilung = abteilungService.bearbeiteAbteilung(ausgewaehlteAbteilung, name, leitenderMitarbeiter);
             if (bearbeiteteAbteilung == null)
