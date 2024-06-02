@@ -34,7 +34,7 @@ public class AntragService implements IAntragService {
             final String kommentar,
             @NotNull final Mitarbeiter bearbeitenderMitarbeiter
     ) {
-        var antrag = new Antrag(stellenderMitarbeiter, type, datum, titel, status, kommentar, bearbeitenderMitarbeiter);
+        var antrag = new Antrag(stellenderMitarbeiter, type, datum, titel, status, kommentar, false, bearbeitenderMitarbeiter);
 
         antragRepository.save(antrag);
         return antrag;

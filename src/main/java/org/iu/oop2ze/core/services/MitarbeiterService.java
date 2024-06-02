@@ -94,12 +94,12 @@ public class MitarbeiterService implements IMitarbeiterService {
         var mitarbeiter = mitarbeiterRepository.findByEmailAndPasswort(email, passwort);
 
         if (mitarbeiter == null) {
-            mitarbeiter = mitarbeiterRepository.findByEmail(email);
-            if (mitarbeiter != null && mitarbeiter.getPasswort().isBlank()) {
-                mitarbeiter.setPasswort(passwort);
-                mitarbeiterRepository.save(mitarbeiter);
+            var emailMitarbeiter = mitarbeiterRepository.findByEmail(email);
+            if (emailMitarbeiter != null && emailMitarbeiter.getPasswort().isBlank()) {
+                emailMitarbeiter.setPasswort(passwort);
+                mitarbeiterRepository.save(emailMitarbeiter);
 
-                return mitarbeiter;
+                return emailMitarbeiter;
             }
         }
 

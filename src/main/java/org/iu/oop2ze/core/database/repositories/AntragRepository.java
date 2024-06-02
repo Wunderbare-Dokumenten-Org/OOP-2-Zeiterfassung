@@ -15,7 +15,7 @@ import java.util.List;
 public interface AntragRepository extends CrudRepository<Antrag, Long> {
     Antrag findFirstByStellenderMitarbeiterAndTypeOrderByErstelltDesc(final Mitarbeiter stellenderMitarbeiter, final AntragType type);
 
-    List<Antrag> findByStellenderMitarbeiter(final Mitarbeiter stellenderMitarbeiter);
+    List<Antrag> findByStellenderMitarbeiterAndType(final Mitarbeiter stellenderMitarbeiter, AntragType type);
 
-    List<Antrag> findByBearbeitenderMitarbeiter(final Mitarbeiter bearbeitenderMitarbeiter);
+    List<Antrag> findByBearbeitenderMitarbeiterAndType(final Mitarbeiter bearbeitenderMitarbeiter, AntragType type);
 }
