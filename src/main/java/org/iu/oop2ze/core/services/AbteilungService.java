@@ -5,6 +5,7 @@ import org.iu.oop2ze.core.database.models.Abteilung;
 import org.iu.oop2ze.core.database.models.Mitarbeiter;
 import org.iu.oop2ze.core.database.repositories.AbteilungRepository;
 import org.iu.oop2ze.core.services.interfaces.IAbteilungService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +24,8 @@ public class AbteilungService implements IAbteilungService {
     private AbteilungRepository abteilungRepository;
 
     @Override
-    public Abteilung erstelleAbteilung(final String name, final Boolean isHr, final Mitarbeiter leitenderMitarbeiter) {
-        if (name.isBlank() || leitenderMitarbeiter == null || isHr == null) {
+    public Abteilung erstelleAbteilung(@NotNull final String name, @NotNull final Boolean isHr, final Mitarbeiter leitenderMitarbeiter) {
+        if (name.isBlank()) {
             throw new IllegalArgumentException();
         }
 
@@ -41,15 +42,11 @@ public class AbteilungService implements IAbteilungService {
 
     @Override
     public Abteilung bearbeiteAbteilung(
-            Abteilung abteilung,
+            @NotNull Abteilung abteilung,
             final String name,
             final Mitarbeiter leitenderMitarbeiter
     ) {
-        if (abteilung == null) {
-            throw new IllegalArgumentException();
-        }
-
-        if (!name.isBlank())
+        if (name != null && !name.isBlank())
             abteilung.setName(name);
 
         if (leitenderMitarbeiter != null)
@@ -60,11 +57,7 @@ public class AbteilungService implements IAbteilungService {
     }
 
     @Override
-    public void loescheAbteilung(final Abteilung abteilung) {
-        if (abteilung == null) {
-            throw new IllegalArgumentException();
-        }
-
+    public void loescheAbteilung(@NotNull final Abteilung abteilung) {
         abteilungRepository.delete(abteilung);
     }
 
