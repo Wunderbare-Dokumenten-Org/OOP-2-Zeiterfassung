@@ -1,6 +1,7 @@
 package org.iu.oop2ze.core.helpers;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Klasse mit statischen Funktionen, welche Umgebungsvariablen laden
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EnviromentHelper {
     private static String firma;
+    private static String encryptionSecret;
 
     /**
      * Lädt den Firmen Namen aus den Umgebungsvariablen
@@ -18,16 +20,24 @@ public class EnviromentHelper {
      * @author Julius Beier
      */
     public static String gibFirma() {
-        if (firma != null)
-            if (!firma.isBlank()) return firma;
+        var envVarInhalt = System.getenv();
+        return gibEnvVar("OOP2ZE_FIRMA", firma);
+    }
 
-        var envVarInhalt = System.getenv("OOP2ZE_FIRMA");
+    public static String gibEncryptionSecret() {
+        return gibEnvVar("OOP2ZE_ENCRYPTION_SECRET", encryptionSecret);
+    }
+
+    private static String gibEnvVar(@NotNull final String envVar, String storeVar) {
+        if (storeVar != null)
+            if (!storeVar.isBlank()) return storeVar;
+
+        var envVarInhalt = System.getenv(envVar);
         if (envVarInhalt == null || envVarInhalt.isBlank()) {
-            log.error("Firmen Name konnte nicht aus den Umgebungsvariablen geladen werden");
             throw new IllegalStateException();
         }
 
-        firma = envVarInhalt;
-        return firma;
+        storeVar = envVarInhalt;
+        return storeVar;
     }
 }

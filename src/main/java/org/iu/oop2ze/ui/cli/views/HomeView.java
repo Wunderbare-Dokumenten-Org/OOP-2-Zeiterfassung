@@ -38,6 +38,14 @@ public class HomeView extends CliComponent {
             if (!UserHelper.isAngemeldet())
                 loginView.exec();
 
+            var user = UserHelper.getAngemeldeterMitarbeiter();
+            if (user.getAbteilung() == null && !user.getIsSysAdmin()) {
+                System.out.println("Sie wurden noch keiner Abteilung zugeordnet, und haben dadurch keinen Zugriff auf die Software");
+                EingabeHelper.stringEingabe("<ENTER> zum Fortfahren", "<ENTER>");
+                UserHelper.logout();
+                continue;
+            }
+
             var menu = MenuHelper.gibUserMenu(homeMenu);
             var result = EingabeHelper.menuEinzelEingabe("Willkommen beim Zeiterfassungssystem", menu, null);
 
