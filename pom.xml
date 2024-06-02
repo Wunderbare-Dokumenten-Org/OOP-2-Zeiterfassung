@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>org.iu</groupId>
 	<artifactId>OOP2-ZE</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1-RELEASE</version>
 	<name>OOP2-ZE</name>
 	<description>OOP2-ZE</description>
 	<properties>
