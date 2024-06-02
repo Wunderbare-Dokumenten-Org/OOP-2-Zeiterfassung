@@ -22,11 +22,14 @@ public class MitarbeiterAnzeigenView extends CliComponent {
 
         EingabeHelper.clearConsole();
 
+        var abteilung = ausgewaehlterMitarbeiter.getAbteilung();
+
         var mitarbeiterAnzeige = new StringBuilder()
                 .append("Mitarbeiter - Anzeige\n")
                 .append("\tName: %s, %s\n".formatted(ausgewaehlterMitarbeiter.getName(), ausgewaehlterMitarbeiter.getVorname()))
                 .append("\tPersonalnummer: %s\n".formatted(ausgewaehlterMitarbeiter.getPersonalnummer()))
                 .append("\tEmail: %s\n".formatted(ausgewaehlterMitarbeiter.getEmail()))
+                .append("\tZugeordnete Abteilung: %s\n".formatted(abteilung == null ? "Nicht zugeordnet" : abteilung.getName()))
                 .append("\tErstellt: %s\n".formatted(ausgewaehlterMitarbeiter.getErstellt()))
                 .append("\tBearbeitet: %s\n".formatted(ausgewaehlterMitarbeiter.getBearbeitet()));
 
