@@ -27,20 +27,18 @@ public class MenuHelper {
      * @see org.iu.oop2ze.ui.cli.menues.mitarbeiter.MitarbeiterMenu
      */
     public static <T> List<T> gibUserMenu(
-            @NotNull final List<T> adminMenu,
-            @NotNull final List<T> hrMenu,
-            @NotNull final List<T> mitarbeiterMenu
+            @NotNull BaseMenu<T> menu
     ) {
         var user = UserHelper.getAngemeldeterMitarbeiter();
         var abteilung = user.getAbteilung();
 
         if (abteilung == null && user.getIsSysAdmin()) {
-            return adminMenu;
+            return menu.getAdmin();
         } else if (abteilung != null) {
             if (abteilung.getIsHr()) {
-                return hrMenu;
+                return menu.getHr();
             } else {
-                return mitarbeiterMenu;
+                return menu.getMitarbeiter();
             }
         }
 
@@ -51,7 +49,7 @@ public class MenuHelper {
         var running = true;
 
         do {
-            var menu = MenuHelper.gibUserMenu(menues.getAdmin(), menues.getHr(), menues.getMitarbeiter());
+            var menu = MenuHelper.gibUserMenu(menues);
             var result = EingabeHelper.menuEinzelEingabe("Wählen Sie eine Aktion aus", menu, null);
 
             switch (result) {

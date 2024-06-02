@@ -43,8 +43,7 @@ public class AbteilungAuflistenView extends CliComponent {
         });
 
         if (ausgewaehlteAbteilung != null) {
-            var menu = MenuHelper.gibUserMenu(abteilungAuflistenMenu.getAdmin(),
-                    abteilungAuflistenMenu.getHr(), abteilungAuflistenMenu.getMitarbeiter());
+            var menu = MenuHelper.gibUserMenu(abteilungAuflistenMenu);
 
             var actionResult = EingabeHelper.menuEinzelEingabe("Wählen Sie eine Aktion", menu, null);
 

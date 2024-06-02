@@ -50,8 +50,7 @@ public class MitarbeiterAuflistenView extends CliComponent {
         });
 
         if (ausgewaehlterMitarbeiter != null) {
-            var menu = MenuHelper.gibUserMenu(mitarbeiterAuflistenMenu.getAdmin(),
-                    mitarbeiterAuflistenMenu.getHr(), mitarbeiterAuflistenMenu.getMitarbeiter());
+            var menu = MenuHelper.gibUserMenu(mitarbeiterAuflistenMenu);
             var actionResult = EingabeHelper.menuEinzelEingabe("Wählen Sie eine Aktion", menu, null);
 
             if (actionResult == null)
