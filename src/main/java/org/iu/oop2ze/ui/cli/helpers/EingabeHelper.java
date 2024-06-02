@@ -3,6 +3,7 @@ package org.iu.oop2ze.ui.cli.helpers;
 import org.iu.oop2ze.ui.cli.abstracts.MenuComponent;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -103,5 +104,25 @@ public class EingabeHelper {
         } while (result.isBlank());
 
         return result;
+    }
+
+    public static Date dateEingabe (final String prompt) {
+        Date result;
+
+        do {
+            System.out.print(prompt);
+
+            var tag = stringEingabe("Tag :", null);
+            var monat = stringEingabe("Monat :", null);
+            var jahr = stringEingabe("Jahr :", null);
+
+            try {
+                
+            }
+        } while (result == null);
+
+        return result;
+
+
     }
 }
