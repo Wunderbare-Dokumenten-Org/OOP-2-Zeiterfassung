@@ -28,7 +28,7 @@ public class MitarbeiterService implements IMitarbeiterService {
             @NotNull final String name,
             @NotNull final String vorname,
             @NotNull final String personalnummer,
-            @NotNull final Abteilung abteilung
+            final Abteilung abteilung
     ) {
         if (name.isBlank() || vorname.isBlank() || personalnummer.isBlank()) {
             throw new IllegalArgumentException();
@@ -65,11 +65,13 @@ public class MitarbeiterService implements IMitarbeiterService {
             mitarbeiter.setVorname(vorname);
 
         var email = "%s.%s@%s.de".formatted(vorname, name, EnviromentHelper.gibFirma());
-        if (mitarbeiterRepository.findByEmail(email) != null) {
-            log.error("Mitarbeiter mit der Email: '%s' existiert bereits".formatted(email));
-            return null;
+        if (email.compareTo(mitarbeiter.getEmail()) != 0) {
+            if (mitarbeiterRepository.findByEmail(email) != null) {
+                log.error("Mitarbeiter mit der Email: '%s' existiert bereits".formatted(email));
+                return null;
+            }
+            mitarbeiter.setEmail(email);
         }
-        mitarbeiter.setEmail(email);
 
         if (abteilung != null)
             mitarbeiter.setAbteilung(abteilung);

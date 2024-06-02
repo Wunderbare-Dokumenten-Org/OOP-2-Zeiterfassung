@@ -5,8 +5,6 @@ import org.iu.oop2ze.core.database.models.Mitarbeiter;
 import org.iu.oop2ze.ui.cli.abstracts.CliComponent;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 
-import java.util.Scanner;
-
 /**
  * Klasse, welche einen Mitarbeiter in der Konsole ausgibt
  *
@@ -30,11 +28,10 @@ public class MitarbeiterAnzeigenView extends CliComponent {
                 .append("\tPersonalnummer: %s\n".formatted(ausgewaehlterMitarbeiter.getPersonalnummer()))
                 .append("\tEmail: %s\n".formatted(ausgewaehlterMitarbeiter.getEmail()))
                 .append("\tErstellt: %s\n".formatted(ausgewaehlterMitarbeiter.getErstellt()))
-                .append("\tBearbeitet: %s\n".formatted(ausgewaehlterMitarbeiter.getBearbeitet()))
-                .append("Zum verlassen der Ansicht: <ENTER>");
+                .append("\tBearbeitet: %s\n".formatted(ausgewaehlterMitarbeiter.getBearbeitet()));
 
         System.out.println(mitarbeiterAnzeige);
         ausgewaehlterMitarbeiter = null;
-        new Scanner(System.in).nextLine();
+        EingabeHelper.stringEingabe("<ENTER> zum Fortfahren", "<ENTER>");
     }
 }

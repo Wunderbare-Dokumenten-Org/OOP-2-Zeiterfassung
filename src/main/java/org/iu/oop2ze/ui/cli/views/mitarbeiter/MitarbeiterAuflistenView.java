@@ -7,7 +7,7 @@ import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 import org.iu.oop2ze.ui.cli.helpers.MenuHelper;
 import org.iu.oop2ze.ui.cli.helpers.UserHelper;
-import org.iu.oop2ze.ui.cli.menues.global.ActionMenu;
+import org.iu.oop2ze.ui.cli.menues.mitarbeiter.MitarbeiterAuflistenMenu;
 
 import java.util.List;
 
@@ -17,7 +17,6 @@ import java.util.List;
  *
  * @author Julius Beier
  * @see CliComponent
- * @see org.iu.oop2ze.ui.cli.menues.global.ActionMenuOptions
  */
 public class MitarbeiterAuflistenView extends CliComponent {
     @LazyInject
@@ -28,6 +27,9 @@ public class MitarbeiterAuflistenView extends CliComponent {
 
     @LazyInject
     private MitarbeiterBearbeitenView mitarbeiterBearbeiteView;
+
+    @LazyInject
+    private MitarbeiterAuflistenMenu mitarbeiterAuflistenMenu;
 
     @Override
     public void exec() {
@@ -40,7 +42,7 @@ public class MitarbeiterAuflistenView extends CliComponent {
         } else if (user.getAbteilung().getIsHr()) {
             mitarbeiter = mitarbeiterService.findeAlleMitarbeiterFuerAbteilung(user.getAbteilung());
         } else {
-            throw new IllegalStateException();
+            throw new IllegalStateException("Normale Mitarbeiter haben keinen Zugriff auf die Mitarbeiter Verwaltung");
         }
 
         var ausgewaehlterMitarbeiter = EingabeHelper.menuEinzelEingabe("Wählen Sie einen Mitarbeiter aus", mitarbeiter, (Mitarbeiter m) -> {
@@ -48,8 +50,11 @@ public class MitarbeiterAuflistenView extends CliComponent {
         });
 
         if (ausgewaehlterMitarbeiter != null) {
-            var menu = MenuHelper.gibUserMenu(ActionMenu.ADMIN, ActionMenu.HR, ActionMenu.MITARBEITER);
+            var menu = MenuHelper.gibUserMenu(mitarbeiterAuflistenMenu);
             var actionResult = EingabeHelper.menuEinzelEingabe("Wählen Sie eine Aktion", menu, null);
+
+            if (actionResult == null)
+                return;
 
             switch (actionResult) {
                 case ANZEIGEN -> {

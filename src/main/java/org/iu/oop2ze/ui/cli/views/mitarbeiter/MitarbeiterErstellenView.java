@@ -7,8 +7,7 @@ import org.iu.oop2ze.core.services.interfaces.IMitarbeiterService;
 import org.iu.oop2ze.ui.cli.abstracts.CliComponent;
 import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
-
-import java.util.Scanner;
+import org.iu.oop2ze.ui.cli.helpers.PromptHelper;
 
 /**
  * Klasse, welche einen Mitarbeiter erstellen lässt
@@ -27,18 +26,34 @@ public class MitarbeiterErstellenView extends CliComponent {
     public void exec() {
         Mitarbeiter neuerMitarbeiter = null;
 
+        String name = null;
+        String vorname = null;
+        String personalnummer = null;
+        Abteilung abteilung = null;
+        Abteilung letzteAbteilung = null;
+
         do {
             EingabeHelper.clearConsole();
 
             System.out.println("Mitarbeiter - Erstellen");
 
-            var name = EingabeHelper.stringEingabe("Name des Mitarbeiters: ", null);
-            var vorname = EingabeHelper.stringEingabe("Vorname des Mitarbeiters: ", null);
-            var personalnummer = EingabeHelper.stringEingabe("Personalnummer des Mitarbeiters: ", null);
-            var abteilung = EingabeHelper.menuEinzelEingabe("Abteilung des Mitarbeiters", abteilungService.findeAlle(), Abteilung::getName);
+            var namePrompt = PromptHelper.erstellInputPrompt("Name des Mitarbeiters%s: ", name == null ? "" : name);
+            name = EingabeHelper.stringEingabe(namePrompt, name);
+
+            var vornamePrompt = PromptHelper.erstellInputPrompt("Vorname des Mitarbeiters%s: ", vorname == null ? "" : vorname);
+            vorname = EingabeHelper.stringEingabe(vornamePrompt, vorname);
+
+            var personalnummerPrompt = PromptHelper.erstellInputPrompt("Personalnummer des Mitarbeiters%s: ", personalnummer == null ? "" : personalnummer);
+            personalnummer = EingabeHelper.stringEingabe(personalnummerPrompt, personalnummer);
+
+            abteilung = MitarbeiterHelper.getAbteilung(abteilung, letzteAbteilung, abteilungService);
+
+            if (abteilung != null)
+                letzteAbteilung = abteilung;
 
             neuerMitarbeiter = mitarbeiterService.erstelleMitarbeiter(name, vorname, personalnummer, abteilung);
-            new Scanner(System.in).nextLine();
+            if (neuerMitarbeiter == null)
+                EingabeHelper.stringEingabe("<ENTER> zum Fortfahren", "<ENTER>");
         } while (neuerMitarbeiter == null);
     }
 }

@@ -45,7 +45,7 @@ public interface IAbteilungService {
      * Gibt alle vorhanden Abteilungen zurück
      *
      * @return Liste aller vorhanden Abteilungen
-     * @author Julius Beier
+     * @author Julius Beier, Nico
      */
     List<Abteilung> findeAlle();
 }

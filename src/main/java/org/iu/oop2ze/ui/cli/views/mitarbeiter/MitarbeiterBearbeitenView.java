@@ -31,22 +31,33 @@ public class MitarbeiterBearbeitenView extends CliComponent {
         if (ausgewaehlterMitarbeiter == null)
             throw new IllegalStateException();
 
-        EingabeHelper.clearConsole();
+        Mitarbeiter bearbeiteterMitarbeiter = null;
 
-        System.out.println("Mitarbeiter - Bearbeiten");
-        var namePrompt = PromptHelper.erstellInputPrompt("Name des Mitarbeiters%s: ", ausgewaehlterMitarbeiter.getName());
-        var name = EingabeHelper.stringEingabe(namePrompt, ausgewaehlterMitarbeiter.getName());
+        String name = ausgewaehlterMitarbeiter.getName();
+        String vorname = ausgewaehlterMitarbeiter.getVorname();
+        Abteilung abteilung = ausgewaehlterMitarbeiter.getAbteilung();
+        Abteilung letzteAbteilung = ausgewaehlterMitarbeiter.getAbteilung();
 
-        var vornamePrompt = PromptHelper.erstellInputPrompt("Vorname des Mitarbeiters%s: ", ausgewaehlterMitarbeiter.getVorname());
-        var vorname = EingabeHelper.stringEingabe(vornamePrompt, ausgewaehlterMitarbeiter.getVorname());
+        do {
+            EingabeHelper.clearConsole();
 
-        var mitarbeiterAbteilung = ausgewaehlterMitarbeiter.getAbteilung();
-        var abteilungPrompt = PromptHelper.erstellInputPrompt(
-                "Abteilung des Mitarbeiters%s: ",
-                mitarbeiterAbteilung == null ? "" : mitarbeiterAbteilung.getName());
-        var abteilung = EingabeHelper.menuEinzelEingabe(abteilungPrompt, abteilungService.findeAlle(), Abteilung::getName);
+            System.out.println("Mitarbeiter - Bearbeiten");
 
-        mitarbeiterService.bearbeiteMitarbeiter(ausgewaehlterMitarbeiter, name, vorname, abteilung);
+            var namePrompt = PromptHelper.erstellInputPrompt("Name des Mitarbeiters%s: ", name);
+            name = EingabeHelper.stringEingabe(namePrompt, name);
+
+            var vornamePrompt = PromptHelper.erstellInputPrompt("Vorname des Mitarbeiters%s: ", vorname);
+            vorname = EingabeHelper.stringEingabe(vornamePrompt, vorname);
+
+            abteilung = MitarbeiterHelper.getAbteilung(abteilung, letzteAbteilung, abteilungService);
+
+            if (abteilung != null)
+                letzteAbteilung = abteilung;
+
+            bearbeiteterMitarbeiter = mitarbeiterService.bearbeiteMitarbeiter(ausgewaehlterMitarbeiter, name, vorname, abteilung);
+            if (bearbeiteterMitarbeiter == null)
+                EingabeHelper.stringEingabe("<ENTER> zum Fortfahren", "<ENTER>");
+        } while (bearbeiteterMitarbeiter == null);
         ausgewaehlterMitarbeiter = null;
     }
 }

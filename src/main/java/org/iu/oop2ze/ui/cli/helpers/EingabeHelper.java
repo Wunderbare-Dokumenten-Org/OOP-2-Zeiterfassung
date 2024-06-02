@@ -46,26 +46,24 @@ public class EingabeHelper {
         if (options.isEmpty())
             return null;
 
-        var propmt = new StringBuilder();
+        var prompt = new StringBuilder();
 
-        propmt.append("%s\n".formatted(title));
+        prompt.append("%s\n".formatted(title));
 
         if (menuComponent == null)
-            menuComponent = (T m) -> {
-                return m.toString();
-            };
+            menuComponent = Object::toString;
 
         int i = 1;
         for (Iterator<T> iter = options.iterator(); iter.hasNext(); i++) {
             var item = iter.next();
-            propmt.append("\t%d: %s\n".formatted(i, menuComponent.getMenuEntry(item)));
+            prompt.append("\t%d: %s\n".formatted(i, menuComponent.getMenuEntry(item)));
         }
 
-        propmt.append("Wählen Sie eine Option (%d - %d):".formatted(1, options.size()));
+        prompt.append("Wählen Sie eine Option (%d - %d):".formatted(1, options.size()));
 
-        var menu = propmt.toString();
+        var menu = prompt.toString();
 
-        int result;
+        int result = 0;
         do {
             clearConsole();
             System.out.print(menu);
@@ -75,7 +73,12 @@ public class EingabeHelper {
                 return null;
             }
 
-            result = Integer.parseInt(tmp);
+            try {
+                result = Integer.parseInt(tmp);
+            } catch (Exception e) {
+                System.out.println("Fehler bei der Eingabe");
+                EingabeHelper.stringEingabe("<ENTER> zum Fortfahren", "<ENTER>");
+            }
         } while (result < 1 || result > options.size());
 
         return options.get(result - 1);

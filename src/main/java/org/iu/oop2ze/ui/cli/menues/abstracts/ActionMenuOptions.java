@@ -1,11 +1,9 @@
-package org.iu.oop2ze.ui.cli.menues.global;
+package org.iu.oop2ze.ui.cli.menues.abstracts;
 
 /**
  * Enum, welcher die Aktionsmenüoptionen beschreibt
  *
  * @author Julius Beier
- * @see ActionMenu
- * @see org.iu.oop2ze.ui.cli.views.mitarbeiter.MitarbeiterAuflistenView
  */
 public enum ActionMenuOptions {
     ANZEIGEN,
