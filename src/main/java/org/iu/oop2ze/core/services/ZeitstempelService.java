@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,8 +27,8 @@ public class ZeitstempelService implements IZeitstempelService {
     private AntragRepository antragRepository;
 
     private Antrag erstelleZeitstempel(@NotNull final Mitarbeiter stellenderMitarbeiter, AntragType type) {
-        var letzterAntrag = antragRepository.findFirstByStellenderMitarbeiterAndTypeOrderByErstelltDesc(stellenderMitarbeiter, AntragType.ARBEIT_BEGIN);
-        if (letzterAntrag != null && (letzterAntrag.getType() == AntragType.ARBEIT_BEGIN)) {
+        var letzterAntrag = antragRepository.findFirstByStellenderMitarbeiterAndTypeOrderByErstelltDesc(stellenderMitarbeiter, type);
+        if (letzterAntrag != null && (letzterAntrag.getType() == type)) {
             log.error("Sie können kein %s Stempeln, wenn Sie ihre letzte Arbeitszeit, noch nicht %s haben"
                     .formatted("BEGIN", "ENDE"));
             return null;
@@ -84,7 +85,10 @@ public class ZeitstempelService implements IZeitstempelService {
 
     @Override
     public List<Antrag> findeAlleZeitstempelFuerSteller(@NotNull final Mitarbeiter steller) {
-        return antragRepository.findByStellenderMitarbeiter(steller);
+        var antraege = new ArrayList<Antrag>();
+        antraege.addAll(antragRepository.findByStellenderMitarbeiterAndType(steller, AntragType.ARBEIT_BEGIN));
+        antraege.addAll(antragRepository.findByStellenderMitarbeiterAndType(steller, AntragType.ARBEIT_ENDE));
+        return antraege;
     }
 
     @Override
@@ -95,6 +99,9 @@ public class ZeitstempelService implements IZeitstempelService {
 
     @Override
     public List<Antrag> findeAlleZeitstempelFuerBearbeiter(@NotNull final Mitarbeiter bearbeiter) {
-        return antragRepository.findByBearbeitenderMitarbeiter(bearbeiter);
+        var antraege = new ArrayList<Antrag>();
+        antraege.addAll(antragRepository.findByBearbeitenderMitarbeiterAndType(bearbeiter, AntragType.ARBEIT_BEGIN));
+        antraege.addAll(antragRepository.findByBearbeitenderMitarbeiterAndType(bearbeiter, AntragType.ARBEIT_ENDE));
+        return antraege;
     }
 }
