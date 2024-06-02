@@ -5,6 +5,7 @@ import org.iu.oop2ze.ui.cli.menues.abstracts.MenuViewMenuOptions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Klasse, welche das Mitarbeitermenü, der Nutzer beschreibt
@@ -19,7 +20,7 @@ public class AbteilungMenu extends BaseMenu<MenuViewMenuOptions> {
                 MenuViewMenuOptions.ZURUECK
         );
 
-        this.hr = new ArrayList<>();
+        this.hr = List.of(MenuViewMenuOptions.AUFLISTEN, MenuViewMenuOptions.ZURUECK);
 
         this.mitarbeiter = new ArrayList<>();
     }

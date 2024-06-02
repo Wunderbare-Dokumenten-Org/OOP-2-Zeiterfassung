@@ -24,6 +24,7 @@ public class HomeMenu extends BaseMenu<HomeMenuOptions> {
         this.hr = Arrays.asList(
                 HomeMenuOptions.ARBEITSZEITEN,
                 HomeMenuOptions.ANTRAEGE,
+                HomeMenuOptions.ABTEILUNGEN,
                 HomeMenuOptions.MITARBEITER,
                 HomeMenuOptions.LOGOUT,
                 HomeMenuOptions.BEENDEN

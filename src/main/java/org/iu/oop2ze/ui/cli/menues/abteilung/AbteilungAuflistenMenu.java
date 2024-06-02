@@ -5,6 +5,7 @@ import org.iu.oop2ze.ui.cli.menues.abstracts.BaseMenu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class AbteilungAuflistenMenu extends BaseMenu<ActionMenuOptions> {
     public AbteilungAuflistenMenu() {
@@ -14,7 +15,7 @@ public class AbteilungAuflistenMenu extends BaseMenu<ActionMenuOptions> {
                 ActionMenuOptions.LOESCHEN
         );
 
-        this.hr = new ArrayList<>();
+        this.hr = List.of(ActionMenuOptions.ANZEIGEN);
 
         this.mitarbeiter = new ArrayList<>();
     }
