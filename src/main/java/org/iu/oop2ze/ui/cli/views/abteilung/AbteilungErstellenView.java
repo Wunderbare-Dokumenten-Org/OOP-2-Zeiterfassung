@@ -45,19 +45,10 @@ public class AbteilungErstellenView extends CliComponent {
             if (isHr == null)
                 isHr = false;
 
-            var leitenderMitarbeiterPrompt = PromptHelper.erstellInputPrompt("Leitender Mitarbeiter%s: ",
-                    leitenderMitarbeiter == null ? "" : leitenderMitarbeiter.getName());
-
-            leitenderMitarbeiter = EingabeHelper.menuEinzelEingabe(leitenderMitarbeiterPrompt,
-                    mitarbeiterService.findeAlleMitarbeiter(), (Mitarbeiter m) -> {
-                        return "%s, %s".formatted(m.getName(), m.getVorname());
-                    });
+            leitenderMitarbeiter = AbteilungHelper.gibLeitenderMitarbeiter(leitenderMitarbeiter, lastLeitenderMitarbeiter, mitarbeiterService);
 
             if (leitenderMitarbeiter != null)
                 lastLeitenderMitarbeiter = leitenderMitarbeiter;
-
-            if (leitenderMitarbeiter == null && lastLeitenderMitarbeiter != null)
-                leitenderMitarbeiter = lastLeitenderMitarbeiter;
 
             neueAbteilung = abteilungService.erstelleAbteilung(name, isHr, leitenderMitarbeiter);
             if (neueAbteilung == null)

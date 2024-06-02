@@ -25,26 +25,29 @@ public class AbteilungBearbeitenView extends CliComponent {
         if (ausgewaehlteAbteilung == null)
             throw new IllegalStateException();
 
-        EingabeHelper.clearConsole();
+        Abteilung bearbeiteteAbteilung = null;
 
-        System.out.println("Abteilung - Bearbeiten");
+        String name = ausgewaehlteAbteilung.getName();
+        Mitarbeiter leitenderMitarbeiter = ausgewaehlteAbteilung.getLeitenderMitarbeiter();
+        Mitarbeiter lastLeitenderMitarbeiter = leitenderMitarbeiter;
 
-        var namePrompt = PromptHelper.erstellInputPrompt("Name der Abteilung%s: ", ausgewaehlteAbteilung.getName());
-        var name = EingabeHelper.stringEingabe(namePrompt, ausgewaehlteAbteilung.getName());
+        do {
+            EingabeHelper.clearConsole();
 
-        var currentleitenderMitarbeiter = ausgewaehlteAbteilung.getLeitenderMitarbeiter();
-        var abteilungPrompt = PromptHelper.erstellInputPrompt(
-                "Leitender Mitarbeiter%s: ",
-                currentleitenderMitarbeiter == null ? "" : currentleitenderMitarbeiter.getName());
-        var leitenderMitarbeiter = EingabeHelper.menuEinzelEingabe(abteilungPrompt, mitarbeiterService.findeAlleMitarbeiter(), (Mitarbeiter m) -> {
-            return "%s, %s".formatted(m.getName(), m.getVorname());
-        });
+            System.out.println("Abteilung - Bearbeiten");
 
-        if (leitenderMitarbeiter == null && currentleitenderMitarbeiter != null)
-            leitenderMitarbeiter = currentleitenderMitarbeiter;
+            var namePrompt = PromptHelper.erstellInputPrompt("Name der Abteilung%s: ", name);
+            name = EingabeHelper.stringEingabe(namePrompt, name);
 
-        abteilungService.bearbeiteAbteilung(ausgewaehlteAbteilung, name, leitenderMitarbeiter);
+            leitenderMitarbeiter = AbteilungHelper.gibLeitenderMitarbeiter(leitenderMitarbeiter, lastLeitenderMitarbeiter, mitarbeiterService);
+
+            if (leitenderMitarbeiter != null)
+                lastLeitenderMitarbeiter = leitenderMitarbeiter;
+
+            bearbeiteteAbteilung = abteilungService.bearbeiteAbteilung(ausgewaehlteAbteilung, name, leitenderMitarbeiter);
+            if (bearbeiteteAbteilung == null)
+                EingabeHelper.stringEingabe("<ENTER> zum Fortfahren", "<ENTER>");
+        } while(bearbeiteteAbteilung == null);
         ausgewaehlteAbteilung = null;
-        EingabeHelper.stringEingabe("<ENTER> zum Fortfahren", "<ENTER>");
     }
 }
