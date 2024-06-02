@@ -31,13 +31,9 @@ public class EingabeHelper {
      * @param title         Der Titel, des Menüs
      * @param options       Die auswählbaren Menüeinträge
      * @param menuComponent Lambda Expression, zur formatierung, der Menüeinträge
-     * @param <T>           Type, der auswählbaren Menüeinträge
      * @return Den ausgewählten Menüeintrag oder null
      * @author Julius Beier
      * @see MenuComponent
-     * @see org.iu.oop2ze.ui.cli.menues.home.HomeMenuOptions
-     * @see org.iu.oop2ze.ui.cli.menues.global.ActionMenuOptions
-     * @see org.iu.oop2ze.ui.cli.menues.mitarbeiter.MitarbeiterMenuOptions
      */
     public static <T> T menuEinzelEingabe(@NotNull final String title,
                                           @NotNull final List<T> options,

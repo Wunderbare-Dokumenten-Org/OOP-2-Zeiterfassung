@@ -5,6 +5,12 @@ import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.iu.oop2ze.ui.cli.helpers.MenuHelper;
 import org.iu.oop2ze.ui.cli.menues.abteilung.AbteilungMenu;
 
+/**
+ * Klasse, welche ein Menü für Abteilungen anzeigt
+ *
+ * @author Julius Beier, Nico Nimschofsky
+ * @see CliComponent
+ */
 public class AbteilungMenuView extends CliComponent {
     @LazyInject
     private AbteilungAuflistenView auflistenView;

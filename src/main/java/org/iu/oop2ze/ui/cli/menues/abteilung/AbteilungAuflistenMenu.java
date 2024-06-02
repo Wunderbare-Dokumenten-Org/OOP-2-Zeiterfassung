@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Klasse, welche die Menüs für die AbteilungAuflistenView definiert
+ *
+ * @author Julius Beier
+ */
 public class AbteilungAuflistenMenu extends BaseMenu<ActionMenuOptions> {
     public AbteilungAuflistenMenu() {
         this.admin = Arrays.asList(

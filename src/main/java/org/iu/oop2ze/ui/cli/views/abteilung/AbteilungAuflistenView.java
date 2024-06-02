@@ -6,18 +6,16 @@ import org.iu.oop2ze.ui.cli.abstracts.CliComponent;
 import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 import org.iu.oop2ze.ui.cli.helpers.MenuHelper;
-import org.iu.oop2ze.ui.cli.menues.abstracts.ActionMenuOptions;
 import org.iu.oop2ze.ui.cli.menues.abteilung.AbteilungAuflistenMenu;
 
 import java.util.List;
 
 /**
- * Klasse, welche einen Mitarbeiter auswählen lässt
- * und Aktionen mit diesem Mitarbeiter ausführt
+ * Klasse, welche eine Abteilung auswählen lässt
+ * und Aktionen mit dieser Abteilung ausführt
  *
- * @author Julius Beier
+ * @author Julius Beier, Nico Nimschofsky
  * @see CliComponent
- * @see ActionMenuOptions
  */
 public class AbteilungAuflistenView extends CliComponent {
     @LazyInject

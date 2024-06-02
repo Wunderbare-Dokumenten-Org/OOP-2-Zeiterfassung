@@ -16,9 +16,13 @@ public interface IAntragService {
     /**
      * Erstellt einen Antrag
      *
-     * @param stellenderMitarbeiter Der Mitarbeiter, welcher den Antrag stellt
-     * @param type                  Der Type des Antrags
-     * @param datum                 Das Datum, für wann der Antrag gedacht ist
+     * @param stellenderMitarbeiter    Der Mitarbeiter, welcher den Antrag stellt
+     * @param type                     Der Type des Antrags
+     * @param datum                    Das Datum, für wann der Antrag gedacht ist
+     * @param titel                    Der Titel des Antrages
+     * @param status                   Der Status des Antrages
+     * @param kommentar                Der Kommentar des Antrages
+     * @param bearbeitenderMitarbeiter Der Mitarbeiter, welcher den Antrag bearbeitet
      * @return Den erstellten Antrag
      * @author Julius Beier, Leon Dieringer
      */
@@ -29,10 +33,10 @@ public interface IAntragService {
      *
      * @param antrag                   Der zu bearbeitende Antrag
      * @param type                     Der Type des Antrags
-     * @param datum                    Das Datum des Antrags
-     * @param status                   Der Status des Antrags
-     * @param kommentar                Der kommentar für Antrag
-     * @param bearbeitenderMitarbeiter Der bearbeitende Mitarbeiter
+     * @param datum                    Das Datum, für wann der Antrag gedacht ist
+     * @param status                   Der Status des Antrages
+     * @param kommentar                Der Kommentar des Antrages
+     * @param bearbeitenderMitarbeiter Der Mitarbeiter, welcher den Antrag bearbeitet
      * @return Den bearbeiteten Antrag
      * @author Julius Beier, Leon Dieringer
      */

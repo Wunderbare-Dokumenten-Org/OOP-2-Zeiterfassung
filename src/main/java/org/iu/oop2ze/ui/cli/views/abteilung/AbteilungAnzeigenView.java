@@ -5,6 +5,12 @@ import org.iu.oop2ze.core.database.models.Abteilung;
 import org.iu.oop2ze.ui.cli.abstracts.CliComponent;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 
+/**
+ * Klasse, welche Abteilungen Anzeigt
+ *
+ * @author Julius Beier, Nico Nimschofsky
+ * @see CliComponent
+ */
 public class AbteilungAnzeigenView extends CliComponent {
     @Setter
     private Abteilung ausgewaehlteAbteilung;

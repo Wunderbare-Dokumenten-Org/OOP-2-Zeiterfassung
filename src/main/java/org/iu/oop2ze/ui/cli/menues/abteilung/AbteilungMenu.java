@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Klasse, welche das Mitarbeitermenü, der Nutzer beschreibt
+ * Klasse, welche das Abteilungsmenü, der Nutzer beschreibt
  *
  * @author Julius Beier
  */

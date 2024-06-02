@@ -10,6 +10,12 @@ import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 import org.iu.oop2ze.ui.cli.helpers.PromptHelper;
 
+/**
+ * Klasse, welche eine Abteilung bearbeitet
+ *
+ * @author Julius Beier, Nico Nimschofsky
+ * @see CliComponent
+ */
 public class AbteilungBearbeitenView extends CliComponent {
     @LazyInject
     private IAbteilungService abteilungService;
@@ -47,7 +53,7 @@ public class AbteilungBearbeitenView extends CliComponent {
             bearbeiteteAbteilung = abteilungService.bearbeiteAbteilung(ausgewaehlteAbteilung, name, leitenderMitarbeiter);
             if (bearbeiteteAbteilung == null)
                 EingabeHelper.stringEingabe("<ENTER> zum Fortfahren", "<ENTER>");
-        } while(bearbeiteteAbteilung == null);
+        } while (bearbeiteteAbteilung == null);
         ausgewaehlteAbteilung = null;
     }
 }

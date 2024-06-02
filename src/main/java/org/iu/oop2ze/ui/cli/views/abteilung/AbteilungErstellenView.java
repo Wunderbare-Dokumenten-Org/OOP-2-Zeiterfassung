@@ -11,6 +11,12 @@ import org.iu.oop2ze.ui.cli.helpers.PromptHelper;
 
 import java.util.Arrays;
 
+/**
+ * Klasse, welche eine Abteilung erstellt
+ *
+ * @author Julius Beier, Nico Nimschofsky
+ * @see CliComponent
+ */
 public class AbteilungErstellenView extends CliComponent {
     @LazyInject
     private IAbteilungService abteilungService;

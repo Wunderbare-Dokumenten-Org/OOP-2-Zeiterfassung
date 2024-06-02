@@ -26,9 +26,10 @@ public interface IMitarbeiterService {
     /**
      * Bearbeitet einen Mitarbeiter
      *
-     * @param name      Name des Mitarbeiters
-     * @param vorname   Vorname des Mitarbeiters
-     * @param abteilung Abteilung, welcher der Mitarbeiter zugeordnet wird
+     * @param mitarbeiter Der Mitarbeiter, der bearbeitet wird
+     * @param name        Name des Mitarbeiters
+     * @param vorname     Vorname des Mitarbeiters
+     * @param abteilung   Abteilung, welcher der Mitarbeiter zugeordnet wird
      * @return bearbeiteten Mitarbeiter
      * @author Julius Beier
      */
@@ -64,6 +65,7 @@ public interface IMitarbeiterService {
     /**
      * Gibt alle vorhanden Mitarbeiter, einer Abteilung zurück
      *
+     * @param abteilung Die Abteilung, welche die Mitarbeiter angehören
      * @return alle vorhandenen Mitarbeiter, einer Abteilung
      * @author Julius Beier
      */

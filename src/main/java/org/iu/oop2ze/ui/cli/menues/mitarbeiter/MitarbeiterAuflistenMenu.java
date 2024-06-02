@@ -6,6 +6,11 @@ import org.iu.oop2ze.ui.cli.menues.abstracts.BaseMenu;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Klasse, welche die Menüs für die MitarbeiterAuflistenView definiert
+ *
+ * @author Julius Beier
+ */
 public class MitarbeiterAuflistenMenu extends BaseMenu<ActionMenuOptions> {
     public MitarbeiterAuflistenMenu() {
         this.admin = Arrays.asList(

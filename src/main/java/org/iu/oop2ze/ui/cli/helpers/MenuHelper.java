@@ -17,10 +17,8 @@ public class MenuHelper {
     /**
      * Funktion, welche das, dem angemeldeten Mitarbeiter, entsprechende Menü zurückgibt
      *
-     * @param adminMenu       Das Menü, welches ein Admin sieht
-     * @param hrMenu          Das Menü, welches ein Hr Mitarbeiter sieht
-     * @param mitarbeiterMenu Das Menü, welches ein Mitarbeiter sieht
-     * @param <T>             Type, der Menüs
+     * @param menu Die Menüklasse, welche die Menüoptionen für den Mitarbeiter beinhaltet
+     * @param <T>  Type, der Menüs
      * @return Das Menü, welches der angemeldete Mitarbeiter sieht
      * @author Julius Beier
      * @see org.iu.oop2ze.ui.cli.menues.home.HomeMenu
@@ -45,6 +43,14 @@ public class MenuHelper {
         throw new IllegalStateException();
     }
 
+    /**
+     * Funktion, welche ein Menü, mit den MenuViewMenuOptions ausführt
+     *
+     * @param auflistenView Die View Instanz, welche die Auflist-Funktionalität beinhaltet
+     * @param erstellenView Die View Instanz, welche die Erstell-Funktionalität beinhaltet
+     * @param menues        Die Nutzer Menüoptionen
+     * @author Julius Beier
+     */
     public static void runMenu(CliComponent auflistenView, CliComponent erstellenView, BaseMenu<MenuViewMenuOptions> menues) {
         var running = true;
 
