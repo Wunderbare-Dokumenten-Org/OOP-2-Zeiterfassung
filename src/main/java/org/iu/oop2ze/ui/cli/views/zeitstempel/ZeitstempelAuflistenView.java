@@ -1,6 +1,5 @@
 package org.iu.oop2ze.ui.cli.views.zeitstempel;
 
-import lombok.Getter;
 import lombok.Setter;
 import org.iu.oop2ze.core.database.models.Antrag;
 import org.iu.oop2ze.core.services.interfaces.IZeitstempelService;
@@ -21,7 +20,6 @@ import java.util.List;
  * @author Leon Dieringer
  * @see CliComponent
  */
-
 public class ZeitstempelAuflistenView extends CliComponent {
     @LazyInject
     private IZeitstempelService zeitstempelService;

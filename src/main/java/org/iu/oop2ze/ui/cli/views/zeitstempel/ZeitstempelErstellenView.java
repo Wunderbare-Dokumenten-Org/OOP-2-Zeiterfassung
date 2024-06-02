@@ -10,6 +10,12 @@ import org.iu.oop2ze.ui.cli.helpers.UserHelper;
 
 import java.util.Arrays;
 
+/**
+ * Klasse, welche ein Zeitstempelantrag erstellt
+ *
+ * @author Leon Dieringer
+ * @see CliComponent
+ */
 public class ZeitstempelErstellenView extends CliComponent {
     @LazyInject
     private IZeitstempelService zeitstempelService;

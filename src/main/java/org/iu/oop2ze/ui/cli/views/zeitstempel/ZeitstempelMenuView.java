@@ -4,16 +4,12 @@ import org.iu.oop2ze.ui.cli.abstracts.CliComponent;
 import org.iu.oop2ze.ui.cli.abstracts.LazyInject;
 import org.iu.oop2ze.ui.cli.helpers.EingabeHelper;
 import org.iu.oop2ze.ui.cli.helpers.MenuHelper;
-import org.iu.oop2ze.ui.cli.menues.mitarbeiter.MitarbeiterMenu;
-import org.iu.oop2ze.ui.cli.menues.zeitstempel.ZeitstempelAuflistenMenu;
 import org.iu.oop2ze.ui.cli.menues.zeitstempel.ZeitstempelMenu;
-import org.iu.oop2ze.ui.cli.views.mitarbeiter.MitarbeiterAuflistenView;
-import org.iu.oop2ze.ui.cli.views.mitarbeiter.MitarbeiterErstellenView;
 
 /**
- * Klasse, welche ein Menü für Mitarbeiter anzeigt
+ * Klasse, welche ein Menü für Zeitstempelanträge anzeigt
  *
- * @author Julius Beier
+ * @author Leon Dieringer
  * @see CliComponent
  */
 public class ZeitstempelMenuView extends CliComponent {

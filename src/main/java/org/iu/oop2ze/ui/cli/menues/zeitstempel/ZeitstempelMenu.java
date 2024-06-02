@@ -1,6 +1,5 @@
 package org.iu.oop2ze.ui.cli.menues.zeitstempel;
 
-import org.iu.oop2ze.ui.cli.menues.abstracts.AntragViewMenuOptions;
 import org.iu.oop2ze.ui.cli.menues.abstracts.BaseMenu;
 import org.iu.oop2ze.ui.cli.menues.abstracts.MenuViewMenuOptions;
 
